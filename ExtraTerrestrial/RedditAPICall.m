@@ -8,15 +8,23 @@
 
 #import "RedditAPICall.h"
 
+//  Constant Strings
+static NSString * const kDataStr = @"data";
+static NSString * const kChildrenStr = @"children";
+static NSString * const kBeforeString = @"before";
+static NSString * const kAfterStr = @"after";
+
+
+
 @implementation RedditAPICall
 
-- (instancetype)init
-{
+-(instancetype)initWithURL:(NSURL *)theURL {
     self = [super init];
-    if (self) {
-        //_payload = [[NSDictionary alloc] init];
-        _before = nil;
-        _after = nil;
+    if(self) {
+        _apiCallReturns = [[self retrieveDataFromURL:theURL] valueForKey:kDataStr];
+        _before = [_apiCallReturns valueForKey:kBeforeString];
+        _after = [_apiCallReturns valueForKey:kAfterStr];
+        _apiCallReturns = [[_apiCallReturns valueForKey:kChildrenStr] valueForKey:kDataStr];
     }
     return self;
 }
@@ -45,9 +53,7 @@
                                                            error:&jsonSerializationError];
         
         if(!jsonSerializationError) {
-            self.before = [[requestReturns valueForKey:@"data"] valueForKey:@"before"];
-            self.after = [[requestReturns valueForKey:@"data"] valueForKey:@"after"];
-            requestReturns = [[requestReturns valueForKey:@"data"] valueForKey:@"children"];
+           //TODO: handle possible errors and foo
         }
     }
 
@@ -82,12 +88,11 @@
     return 0;
 }
 
--(NSArray *)titlesForURL:(NSURL *)theURL {
-    NSArray *titles = [[NSArray alloc] init];
-    NSDictionary *childrenData = [self retrieveDataFromURL:theURL];
-    titles = [[childrenData valueForKey:@"data"] valueForKey:@"title"];
-    
-    return titles;
+-(NSArray *)dataForKey:(NSString *)theKey {
+    NSArray *data = [self.apiCallReturns valueForKey:theKey];
+    return data;
 }
+
+
 
 @end

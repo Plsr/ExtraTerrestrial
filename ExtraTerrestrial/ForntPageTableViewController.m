@@ -11,7 +11,7 @@
 @interface ForntPageTableViewController ()
 {
     NSArray *tableContent;
-    NSURL *frontpage;
+    NSURL *frontpageURL;
 }
 
 
@@ -23,9 +23,9 @@
     [super viewDidLoad];
     
     // Initialize table data
-    self.apiCall = [[RedditAPICall alloc] init];
-    frontpage = [NSURL URLWithString:@"http://reddit.com/.json"];
-    tableContent = [self.apiCall titlesForURL:frontpage];
+    frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
+    self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
+    //tableContent = [self.apiCall dataForKey:@"title"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,7 +50,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [tableContent count];
+    return [self.apiCall.apiCallReturns count];
 }
 
 
@@ -61,10 +61,13 @@
     UITableViewCell *cell = [self.FrontPageTableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:frontPageTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:frontPageTableIdentifier];
     }
     
-    cell.textLabel.text = [tableContent objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [tableContent  objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.apiCall dataForKey:@"title"] objectAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = @"test";
+    cell.detailTextLabel.text = [[self.apiCall dataForKey:@"subreddit"] objectAtIndex:indexPath.row];
     return cell;
 }
 

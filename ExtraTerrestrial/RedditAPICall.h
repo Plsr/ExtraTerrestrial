@@ -12,14 +12,17 @@
 
 @property (strong, nonatomic) NSString *before;
 @property (strong, nonatomic) NSString *after;
+@property (strong, nonatomic) NSDictionary *apiCallReturns;
 
 //Use dictionary?
 //@property (strong, nonatomic) NSDictionary *payload;
 
--(NSDictionary *)retrieveDataFromURL: (NSURL*) targetURL;
+-(instancetype) initWithURL: (NSURL *) theURL;
+
+
 //-(NSArray *) returnNthLevelOfPayload: (int) level;
 -(NSArray *) returnDataForKeyChildren;
--(NSArray *) titlesForURL: (NSURL *) theURL;
+-(NSArray *) dataForKey: (NSString *) theKey;
 
 
 @end
