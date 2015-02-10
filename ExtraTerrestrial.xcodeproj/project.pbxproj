@@ -1,0 +1,443 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = D91328AF1A728E5A004FC6AE /* RedditAPICall.m */; };
+		D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */; };
+		D9884D931A7013970083E2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D921A7013970083E2CD /* main.m */; };
+		D9884D961A7013970083E2CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D951A7013970083E2CD /* AppDelegate.m */; };
+		D9884D991A7013970083E2CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D981A7013970083E2CD /* ViewController.m */; };
+		D9884D9C1A7013970083E2CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9A1A7013970083E2CD /* Main.storyboard */; };
+		D9884D9E1A7013970083E2CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9D1A7013970083E2CD /* Images.xcassets */; };
+		D9884DA11A7013970083E2CD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9F1A7013970083E2CD /* LaunchScreen.xib */; };
+		D9884DAD1A7013970083E2CD /* ExtraTerrestrialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9884DA71A7013970083E2CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9884D851A7013970083E2CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9884D8C1A7013970083E2CD;
+			remoteInfo = ExtraTerrestrial;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D91328AE1A728E5A004FC6AE /* RedditAPICall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedditAPICall.h; sourceTree = "<group>"; };
+		D91328AF1A728E5A004FC6AE /* RedditAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedditAPICall.m; sourceTree = "<group>"; };
+		D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForntPageTableViewController.h; sourceTree = "<group>"; };
+		D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForntPageTableViewController.m; sourceTree = "<group>"; };
+		D9884D8D1A7013970083E2CD /* ExtraTerrestrial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtraTerrestrial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9884D911A7013970083E2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9884D921A7013970083E2CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D9884D941A7013970083E2CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D9884D951A7013970083E2CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D9884D971A7013970083E2CD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D9884D981A7013970083E2CD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D9884D9B1A7013970083E2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D9884D9D1A7013970083E2CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D9884DA01A7013970083E2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D9884DA61A7013970083E2CD /* ExtraTerrestrialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtraTerrestrialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9884DAB1A7013970083E2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtraTerrestrialTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D9884D8A1A7013970083E2CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9884DA31A7013970083E2CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D9884D841A7013970083E2CD = {
+			isa = PBXGroup;
+			children = (
+				D9884D8F1A7013970083E2CD /* ExtraTerrestrial */,
+				D9884DA91A7013970083E2CD /* ExtraTerrestrialTests */,
+				D9884D8E1A7013970083E2CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D9884D8E1A7013970083E2CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9884D8D1A7013970083E2CD /* ExtraTerrestrial.app */,
+				D9884DA61A7013970083E2CD /* ExtraTerrestrialTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9884D8F1A7013970083E2CD /* ExtraTerrestrial */ = {
+			isa = PBXGroup;
+			children = (
+				D9884D941A7013970083E2CD /* AppDelegate.h */,
+				D9884D951A7013970083E2CD /* AppDelegate.m */,
+				D9884D971A7013970083E2CD /* ViewController.h */,
+				D9884D981A7013970083E2CD /* ViewController.m */,
+				D91328AE1A728E5A004FC6AE /* RedditAPICall.h */,
+				D91328AF1A728E5A004FC6AE /* RedditAPICall.m */,
+				D9884D9A1A7013970083E2CD /* Main.storyboard */,
+				D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */,
+				D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */,
+				D9884D9D1A7013970083E2CD /* Images.xcassets */,
+				D9884D9F1A7013970083E2CD /* LaunchScreen.xib */,
+				D9884D901A7013970083E2CD /* Supporting Files */,
+			);
+			path = ExtraTerrestrial;
+			sourceTree = "<group>";
+		};
+		D9884D901A7013970083E2CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D9884D911A7013970083E2CD /* Info.plist */,
+				D9884D921A7013970083E2CD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9884DA91A7013970083E2CD /* ExtraTerrestrialTests */ = {
+			isa = PBXGroup;
+			children = (
+				D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */,
+				D9884DAA1A7013970083E2CD /* Supporting Files */,
+			);
+			path = ExtraTerrestrialTests;
+			sourceTree = "<group>";
+		};
+		D9884DAA1A7013970083E2CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D9884DAB1A7013970083E2CD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D9884D8C1A7013970083E2CD /* ExtraTerrestrial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9884DB01A7013970083E2CD /* Build configuration list for PBXNativeTarget "ExtraTerrestrial" */;
+			buildPhases = (
+				D9884D891A7013970083E2CD /* Sources */,
+				D9884D8A1A7013970083E2CD /* Frameworks */,
+				D9884D8B1A7013970083E2CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExtraTerrestrial;
+			productName = ExtraTerrestrial;
+			productReference = D9884D8D1A7013970083E2CD /* ExtraTerrestrial.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D9884DA51A7013970083E2CD /* ExtraTerrestrialTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9884DB31A7013970083E2CD /* Build configuration list for PBXNativeTarget "ExtraTerrestrialTests" */;
+			buildPhases = (
+				D9884DA21A7013970083E2CD /* Sources */,
+				D9884DA31A7013970083E2CD /* Frameworks */,
+				D9884DA41A7013970083E2CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9884DA81A7013970083E2CD /* PBXTargetDependency */,
+			);
+			name = ExtraTerrestrialTests;
+			productName = ExtraTerrestrialTests;
+			productReference = D9884DA61A7013970083E2CD /* ExtraTerrestrialTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D9884D851A7013970083E2CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = chrispop;
+				TargetAttributes = {
+					D9884D8C1A7013970083E2CD = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					D9884DA51A7013970083E2CD = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = D9884D8C1A7013970083E2CD;
+					};
+				};
+			};
+			buildConfigurationList = D9884D881A7013970083E2CD /* Build configuration list for PBXProject "ExtraTerrestrial" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D9884D841A7013970083E2CD;
+			productRefGroup = D9884D8E1A7013970083E2CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D9884D8C1A7013970083E2CD /* ExtraTerrestrial */,
+				D9884DA51A7013970083E2CD /* ExtraTerrestrialTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D9884D8B1A7013970083E2CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9884D9C1A7013970083E2CD /* Main.storyboard in Resources */,
+				D9884DA11A7013970083E2CD /* LaunchScreen.xib in Resources */,
+				D9884D9E1A7013970083E2CD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9884DA41A7013970083E2CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D9884D891A7013970083E2CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9884D991A7013970083E2CD /* ViewController.m in Sources */,
+				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
+				D9884D931A7013970083E2CD /* main.m in Sources */,
+				D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */,
+				D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9884DA21A7013970083E2CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9884DAD1A7013970083E2CD /* ExtraTerrestrialTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9884DA81A7013970083E2CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9884D8C1A7013970083E2CD /* ExtraTerrestrial */;
+			targetProxy = D9884DA71A7013970083E2CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D9884D9A1A7013970083E2CD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9884D9B1A7013970083E2CD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D9884D9F1A7013970083E2CD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9884DA01A7013970083E2CD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D9884DAE1A7013970083E2CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D9884DAF1A7013970083E2CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D9884DB11A7013970083E2CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ExtraTerrestrial/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D9884DB21A7013970083E2CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ExtraTerrestrial/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D9884DB41A7013970083E2CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ExtraTerrestrialTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtraTerrestrial.app/ExtraTerrestrial";
+			};
+			name = Debug;
+		};
+		D9884DB51A7013970083E2CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ExtraTerrestrialTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtraTerrestrial.app/ExtraTerrestrial";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D9884D881A7013970083E2CD /* Build configuration list for PBXProject "ExtraTerrestrial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9884DAE1A7013970083E2CD /* Debug */,
+				D9884DAF1A7013970083E2CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9884DB01A7013970083E2CD /* Build configuration list for PBXNativeTarget "ExtraTerrestrial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9884DB11A7013970083E2CD /* Debug */,
+				D9884DB21A7013970083E2CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9884DB31A7013970083E2CD /* Build configuration list for PBXNativeTarget "ExtraTerrestrialTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9884DB41A7013970083E2CD /* Debug */,
+				D9884DB51A7013970083E2CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D9884D851A7013970083E2CD /* Project object */;
+}
