@@ -10,7 +10,7 @@
 
 @interface ForntPageTableViewController ()
 {
-    NSArray *tableContent;
+    NSDictionary *childrenData;
     NSURL *frontpageURL;
 }
 
@@ -26,6 +26,9 @@
     frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
     self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
     //tableContent = [self.apiCall dataForKey:@"title"];
+    
+    //TODO: do this in model
+    childrenData = [[self.apiCall.apiCallReturns valueForKey:@"children"] valueForKey:@"data"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,7 +53,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.apiCall.apiCallReturns count];
+    return [childrenData count];
 }
 
 
@@ -65,9 +68,11 @@
     }
     
     //cell.textLabel.text = [tableContent  objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[self.apiCall dataForKey:@"title"] objectAtIndex:indexPath.row];
+    NSArray *titles = [childrenData valueForKey:@"title"];
+    NSArray *subReddits = [childrenData valueForKey:@"subreddit"];
+    cell.textLabel.text = [titles objectAtIndex:indexPath.row];
     //cell.detailTextLabel.text = @"test";
-    cell.detailTextLabel.text = [[self.apiCall dataForKey:@"subreddit"] objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [subReddits objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -106,14 +111,23 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([[segue identifier]isEqualToString:@"showPostDetail"]) {
+        PostDetailViewController *postDetailViewController = [segue destinationViewController];
+        NSIndexPath *currentPath = [self.FrontPageTableView indexPathForSelectedRow];
+        NSLog(@"%ld", (long)[currentPath row]);
+        NSArray *test = [self.apiCall.apiCallReturns valueForKey:@"children"];
+        //NSLog(@"%@", [test objectAtIndex:(long)[currentPath row]]);
+        postDetailViewController.postContent = test[[currentPath row]];
+        
+    }
 }
-*/
+
 
 @end

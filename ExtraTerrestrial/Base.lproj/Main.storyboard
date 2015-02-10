@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9kv-k1-wRX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sJo-lJ-DGq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -8,10 +8,10 @@
         <scene sceneID="QOr-2P-GgH">
             <objects>
                 <tableViewController id="9kv-k1-wRX" customClass="ForntPageTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="b8s-hz-GmB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b8s-hz-GmB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.19383630946673494" green="0.75407159391534395" blue="0.67462277850638497" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="frontPageTableCell" textLabel="pCS-y1-Wg0" detailTextLabel="YtE-Zr-3FB" style="IBUITableViewCellStyleSubtitle" id="mAf-PG-hcs">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -33,6 +33,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="J1h-9O-Oct" kind="show" identifier="showPostDetail" id="4ZP-7N-2ca"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -40,6 +43,7 @@
                             <outlet property="delegate" destination="9kv-k1-wRX" id="8wl-Oo-hCg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="wuV-8k-wK9"/>
                     <connections>
                         <outlet property="FrontPageTableView" destination="b8s-hz-GmB" id="gLe-ru-Peq"/>
                         <outlet property="view" destination="b8s-hz-GmB" id="FTv-qS-SoP"/>
@@ -48,6 +52,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9k-pe-B8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-629" y="-142"/>
+        </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="FL1-Fe-UqR">
+            <objects>
+                <viewController id="J1h-9O-Oct" customClass="PostDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p24-Mf-BS2"/>
+                        <viewControllerLayoutGuide type="bottom" id="U12-NJ-IQL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eN9-yd-ftB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gna-el-xmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104" y="-140"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Kt8-35-4p9">
+            <objects>
+                <navigationController id="sJo-lJ-DGq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wcn-lL-Uy0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9kv-k1-wRX" kind="relationship" relationship="rootViewController" id="qy6-G5-9W3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B72-JG-ATx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1390" y="-142"/>
         </scene>
     </scenes>
 </document>

@@ -14,14 +14,9 @@
 @property (strong, nonatomic) NSString *after;
 @property (strong, nonatomic) NSDictionary *apiCallReturns;
 
-//Use dictionary?
-//@property (strong, nonatomic) NSDictionary *payload;
+
 
 -(instancetype) initWithURL: (NSURL *) theURL;
-
-
-//-(NSArray *) returnNthLevelOfPayload: (int) level;
--(NSArray *) returnDataForKeyChildren;
 -(NSArray *) dataForKey: (NSString *) theKey;
 
 

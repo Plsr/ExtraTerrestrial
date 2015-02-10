@@ -24,7 +24,7 @@ static NSString * const kAfterStr = @"after";
         _apiCallReturns = [[self retrieveDataFromURL:theURL] valueForKey:kDataStr];
         _before = [_apiCallReturns valueForKey:kBeforeString];
         _after = [_apiCallReturns valueForKey:kAfterStr];
-        _apiCallReturns = [[_apiCallReturns valueForKey:kChildrenStr] valueForKey:kDataStr];
+        
     }
     return self;
 }
@@ -60,34 +60,9 @@ static NSString * const kAfterStr = @"after";
     return requestReturns;
 }
 
-/* May be obsolete later, could be better di directly get the few objects I need
--(NSArray *)returnNthLevelOfPayload: (int) level {
-    NSArray *levelData = [[NSArray alloc] init];
-    NSArray *allKeys = [self.payload allKeys];
-    NSLog(@"All keys are: %@", allKeys);
-    switch (level) {
-        case 1:
-            levelData = [self.payload valueForKey:allKeys[0]];
-            break;
-        
-        case 2:
-            levelData = [self.payload valueForKey:allKeys[1]];
-            break;
-        default:
-            break;
-    }
-    return levelData;
-}*/
 
-
-//TODO: Fix/Delete
--(NSArray *)returnDataForKeyChildren {
-    //NSArray *childrenData = [[NSArray alloc] init];
-    //childrenData = [self.payload valueForKey:@"data"];
-    
-    return 0;
-}
-
+//  Return data for given Key
+//  TODO: Check if key is valid
 -(NSArray *)dataForKey:(NSString *)theKey {
     NSArray *data = [self.apiCallReturns valueForKey:theKey];
     return data;

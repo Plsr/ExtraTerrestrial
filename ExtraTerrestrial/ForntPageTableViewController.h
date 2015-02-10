@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RedditAPICall.h"
+#import "PostDetailViewController.h"
 
 @interface ForntPageTableViewController : UITableViewController
 
