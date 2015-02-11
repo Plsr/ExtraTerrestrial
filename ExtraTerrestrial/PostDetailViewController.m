@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@", [[self.postContent valueForKey:@"data"] valueForKey:@"title"]);
+    NSLog(@"%@", [self.postContent valueForKey:@"data"] );
 }
 
 - (void)didReceiveMemoryWarning {

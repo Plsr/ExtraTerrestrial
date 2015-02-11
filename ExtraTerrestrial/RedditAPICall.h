@@ -17,7 +17,7 @@
 
 
 -(instancetype) initWithURL: (NSURL *) theURL;
--(NSArray *) dataForKey: (NSString *) theKey;
-
+-(NSArray *) dataForKeyArray: (NSString *) theKey;
+-(NSDictionary *) dataForKeyDictionary: (NSString *) theKey;
 
 @end

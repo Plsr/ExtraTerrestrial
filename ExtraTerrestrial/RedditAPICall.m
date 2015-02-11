@@ -61,12 +61,28 @@ static NSString * const kAfterStr = @"after";
 }
 
 
-//  Return data for given Key
+/*
+ ARE THOSE NEEDED?
+ */
+
+//  Return Array with data for given Key
 //  TODO: Check if key is valid
--(NSArray *)dataForKey:(NSString *)theKey {
+-(NSArray *)dataForKeyArray:(NSString *)theKey {
     NSArray *data = [self.apiCallReturns valueForKey:theKey];
     return data;
 }
+
+
+//  Return Dictionary with data for given key
+//  TODO: Check if key is valid
+-(NSDictionary *)dataForKeyDictionary:(NSString *)theKey {
+    NSDictionary *data = [self.apiCallReturns valueForKey:theKey];
+    return data;
+}
+
+
+
+
 
 
 

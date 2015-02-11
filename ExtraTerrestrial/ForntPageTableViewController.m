@@ -25,9 +25,7 @@
     // Initialize table data
     frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
     self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
-    //tableContent = [self.apiCall dataForKey:@"title"];
-    
-    //TODO: do this in model
+
     childrenData = [[self.apiCall.apiCallReturns valueForKey:@"children"] valueForKey:@"data"];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -61,15 +59,18 @@
     NSLog(@"DEBUG");
     static NSString *frontPageTableIdentifier = @"frontPageTableCell";
     
-    UITableViewCell *cell = [self.FrontPageTableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:frontPageTableIdentifier];
     }
     
     //cell.textLabel.text = [tableContent  objectAtIndex:indexPath.row];
+    
+    //  TODO: Redundant, do this outside the function!
     NSArray *titles = [childrenData valueForKey:@"title"];
     NSArray *subReddits = [childrenData valueForKey:@"subreddit"];
+    
     cell.textLabel.text = [titles objectAtIndex:indexPath.row];
     //cell.detailTextLabel.text = @"test";
     cell.detailTextLabel.text = [subReddits objectAtIndex:indexPath.row];
@@ -121,8 +122,8 @@
     if([[segue identifier]isEqualToString:@"showPostDetail"]) {
         PostDetailViewController *postDetailViewController = [segue destinationViewController];
         NSIndexPath *currentPath = [self.FrontPageTableView indexPathForSelectedRow];
-        NSLog(@"%ld", (long)[currentPath row]);
-        NSArray *test = [self.apiCall.apiCallReturns valueForKey:@"children"];
+        //NSLog(@"%ld", (long)[currentPath row]);
+        NSArray *test = [self.apiCall dataForKeyArray:@"children"];
         //NSLog(@"%@", [test objectAtIndex:(long)[currentPath row]]);
         postDetailViewController.postContent = test[[currentPath row]];
         
