@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface RedditAPICall : NSObject
 
@@ -19,5 +20,7 @@
 -(instancetype) initWithURL: (NSURL *) theURL;
 -(NSArray *) dataForKeyArray: (NSString *) theKey;
 -(NSDictionary *) dataForKeyDictionary: (NSString *) theKey;
+
+-(NSArray *) contentOfChildrenForKeys: (NSArray *) theKeys;
 
 @end

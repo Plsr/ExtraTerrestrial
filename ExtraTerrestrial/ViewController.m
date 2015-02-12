@@ -20,8 +20,8 @@
     NSURL *testURL = [[NSURL alloc] initWithString:@"http://reddit.com/.json"];
     self.redditDataConnection = [[RedditAPICall alloc] init];
     self.payload = [[NSArray alloc] init];
-    [self.redditDataConnection retrieveDataFromURL:testURL];
-    self.payload = [self.redditDataConnection returnDataForKeyChildren];
+    //[self.redditDataConnection retrieveDataFromURL:testURL];
+    //self.payload = [self.redditDataConnection returnDataForKeyChildren];
     
     //DEBUG
     NSLog(@"%@", [self.payload valueForKey:@"title"]);

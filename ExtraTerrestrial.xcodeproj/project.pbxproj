@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = D91328AF1A728E5A004FC6AE /* RedditAPICall.m */; };
 		D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */; };
-		D95CE1491A8A8E56000848DA /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1481A8A8E56000848DA /* PostDetailViewController.m */; };
+		D95CE1491A8A8E56000848DA /* SelfPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1481A8A8E56000848DA /* SelfPostViewController.m */; };
+		D9684EA91A8B603C00845C40 /* FrontPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */; };
+		D9684EAC1A8B9E6800845C40 /* FrontPageTableViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */; };
+		D9684EB31A8D1BDB00845C40 /* SinglePostAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EB21A8D1BDB00845C40 /* SinglePostAPICall.m */; };
 		D9884D931A7013970083E2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D921A7013970083E2CD /* main.m */; };
 		D9884D961A7013970083E2CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D951A7013970083E2CD /* AppDelegate.m */; };
 		D9884D991A7013970083E2CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D981A7013970083E2CD /* ViewController.m */; };
@@ -34,8 +37,14 @@
 		D91328AF1A728E5A004FC6AE /* RedditAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedditAPICall.m; sourceTree = "<group>"; };
 		D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForntPageTableViewController.h; sourceTree = "<group>"; };
 		D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForntPageTableViewController.m; sourceTree = "<group>"; };
-		D95CE1471A8A8E56000848DA /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
-		D95CE1481A8A8E56000848DA /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		D95CE1471A8A8E56000848DA /* SelfPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfPostViewController.h; sourceTree = "<group>"; };
+		D95CE1481A8A8E56000848DA /* SelfPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfPostViewController.m; sourceTree = "<group>"; };
+		D9684EA71A8B603C00845C40 /* FrontPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontPageTableViewCell.h; sourceTree = "<group>"; };
+		D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontPageTableViewCell.m; sourceTree = "<group>"; };
+		D9684EAA1A8B9E6800845C40 /* FrontPageTableViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontPageTableViewImageCell.h; sourceTree = "<group>"; };
+		D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontPageTableViewImageCell.m; sourceTree = "<group>"; };
+		D9684EB11A8D1BDB00845C40 /* SinglePostAPICall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostAPICall.h; sourceTree = "<group>"; };
+		D9684EB21A8D1BDB00845C40 /* SinglePostAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostAPICall.m; sourceTree = "<group>"; };
 		D9884D8D1A7013970083E2CD /* ExtraTerrestrial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtraTerrestrial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9884D911A7013970083E2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9884D921A7013970083E2CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,6 +78,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9684EAD1A8CE9AE00845C40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9884D9A1A7013970083E2CD /* Main.storyboard */,
+				D9684EB01A8CE9D300845C40 /* SinglePost */,
+				D9684EAF1A8CE9C300845C40 /* Subreddit */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D9684EAE1A8CE9BD00845C40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D91328AE1A728E5A004FC6AE /* RedditAPICall.h */,
+				D91328AF1A728E5A004FC6AE /* RedditAPICall.m */,
+				D9684EB11A8D1BDB00845C40 /* SinglePostAPICall.h */,
+				D9684EB21A8D1BDB00845C40 /* SinglePostAPICall.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D9684EAF1A8CE9C300845C40 /* Subreddit */ = {
+			isa = PBXGroup;
+			children = (
+				D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */,
+				D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */,
+				D9684EAA1A8B9E6800845C40 /* FrontPageTableViewImageCell.h */,
+				D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */,
+				D9684EA71A8B603C00845C40 /* FrontPageTableViewCell.h */,
+				D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */,
+			);
+			name = Subreddit;
+			sourceTree = "<group>";
+		};
+		D9684EB01A8CE9D300845C40 /* SinglePost */ = {
+			isa = PBXGroup;
+			children = (
+				D95CE1471A8A8E56000848DA /* SelfPostViewController.h */,
+				D95CE1481A8A8E56000848DA /* SelfPostViewController.m */,
+			);
+			name = SinglePost;
+			sourceTree = "<group>";
+		};
 		D9884D841A7013970083E2CD = {
 			isa = PBXGroup;
 			children = (
@@ -90,17 +142,12 @@
 		D9884D8F1A7013970083E2CD /* ExtraTerrestrial */ = {
 			isa = PBXGroup;
 			children = (
+				D9684EAE1A8CE9BD00845C40 /* Model */,
+				D9684EAD1A8CE9AE00845C40 /* View */,
 				D9884D941A7013970083E2CD /* AppDelegate.h */,
 				D9884D951A7013970083E2CD /* AppDelegate.m */,
 				D9884D971A7013970083E2CD /* ViewController.h */,
 				D9884D981A7013970083E2CD /* ViewController.m */,
-				D91328AE1A728E5A004FC6AE /* RedditAPICall.h */,
-				D91328AF1A728E5A004FC6AE /* RedditAPICall.m */,
-				D9884D9A1A7013970083E2CD /* Main.storyboard */,
-				D95CE1471A8A8E56000848DA /* PostDetailViewController.h */,
-				D95CE1481A8A8E56000848DA /* PostDetailViewController.m */,
-				D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */,
-				D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */,
 				D9884D9D1A7013970083E2CD /* Images.xcassets */,
 				D9884D9F1A7013970083E2CD /* LaunchScreen.xib */,
 				D9884D901A7013970083E2CD /* Supporting Files */,
@@ -236,8 +283,11 @@
 			files = (
 				D9884D991A7013970083E2CD /* ViewController.m in Sources */,
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
+				D9684EA91A8B603C00845C40 /* FrontPageTableViewCell.m in Sources */,
 				D9884D931A7013970083E2CD /* main.m in Sources */,
-				D95CE1491A8A8E56000848DA /* PostDetailViewController.m in Sources */,
+				D9684EAC1A8B9E6800845C40 /* FrontPageTableViewImageCell.m in Sources */,
+				D95CE1491A8A8E56000848DA /* SelfPostViewController.m in Sources */,
+				D9684EB31A8D1BDB00845C40 /* SinglePostAPICall.m in Sources */,
 				D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */,
 				D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */,
 			);

@@ -80,10 +80,44 @@ static NSString * const kAfterStr = @"after";
     return data;
 }
 
+/*
+ *  Returns an Dictionary with Arrays for all given keys. 
+ *  Note that it returns an Array with the values of _every_ child for the given key.
+ *  The given keys are copied to the Dictionary as keys.
+ */
+-(NSArray *)contentOfChildrenForKeys:(NSArray *)theKeys {
+    NSMutableDictionary *dataSet = [[NSMutableDictionary alloc] initWithCapacity:[theKeys count]];
+    NSMutableArray *preparedContent = [[NSMutableArray alloc] initWithCapacity:[[self.apiCallReturns valueForKey:@"children"] count]];
+    
+    for (NSObject *child in [self.apiCallReturns valueForKey:@"children"]) {
+        for (NSString *key in theKeys) {
+            if([key isEqualToString:@"thumbnail"]) {
+                if([self thumbnailURLHasContent:[[child valueForKey:@"data"] valueForKey:key]]){
+                    [dataSet setObject:[self imageFromURL:[NSURL URLWithString:[[child valueForKey:@"data"] valueForKey:key]]] forKey:key];
+                }
+            } else {
+                [dataSet setObject:[[child valueForKey:@"data"] valueForKey:key] forKey:key];
+            }
+        }
+        [preparedContent addObject:[NSDictionary dictionaryWithDictionary:dataSet]];
+        [dataSet removeAllObjects];
+    }
+    
+    return preparedContent;
+}
+
+-(UIImage *) imageFromURL: (NSURL *) url {
+    return [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+}
 
 
-
-
-
+-(BOOL) thumbnailURLHasContent: (NSString *) url {
+    //TODO: check with regex
+    if([url isEqualToString:@""] || [url isEqualToString:@"self"] || [url isEqualToString:@"default"]){
+        return NO;
+    } else {
+        return YES;
+    }
+}
 
 @end

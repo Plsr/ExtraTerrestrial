@@ -6,18 +6,19 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "PostDetailViewController.h"
+#import "SelfPostViewController.h"
 
-@interface PostDetailViewController ()
+@interface SelfPostViewController ()
 
 @end
 
-@implementation PostDetailViewController
+@implementation SelfPostViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@", [self.postContent valueForKey:@"data"] );
+    NSLog(@"%@", self.postURLString );
+    NSLog(@"Is self: %@", self.isSelf ? @"YES" : @"NO");
 }
 
 - (void)didReceiveMemoryWarning {

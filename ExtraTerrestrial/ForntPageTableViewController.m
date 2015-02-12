@@ -10,8 +10,11 @@
 
 @interface ForntPageTableViewController ()
 {
-    NSDictionary *childrenData;
+    NSArray *childrenData;
     NSURL *frontpageURL;
+    NSArray *tableContents;
+    NSArray *test;
+
 }
 
 
@@ -26,7 +29,11 @@
     frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
     self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
 
-    childrenData = [[self.apiCall.apiCallReturns valueForKey:@"children"] valueForKey:@"data"];
+    childrenData = [self.apiCall.apiCallReturns valueForKey:@"children"];
+    
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", nil];
+    tableContents = [self.apiCall contentOfChildrenForKeys:keys];
+    //test = [tableContents objectForKey:@"thumbnail"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -51,32 +58,49 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [childrenData count];
+    return [tableContents count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"DEBUG");
+    //NSLog(@"DEBUG");
     static NSString *frontPageTableIdentifier = @"frontPageTableCell";
+    static NSString *frontPageViewTableIdentifier = @"frontPageTableViewCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:frontPageTableIdentifier];
+    if([self hasImageAtIndexPath:indexPath]) {
+        FrontPageTableViewImageCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageViewTableIdentifier];
+        [self configureImageCell:cell atIndexPath:indexPath];
+        return cell;
+    } else {
+        FrontPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
+        [self configureBasicCell:cell atIndexPath:indexPath];
+        return cell;
     }
     
-    //cell.textLabel.text = [tableContent  objectAtIndex:indexPath.row];
-    
-    //  TODO: Redundant, do this outside the function!
-    NSArray *titles = [childrenData valueForKey:@"title"];
-    NSArray *subReddits = [childrenData valueForKey:@"subreddit"];
-    
-    cell.textLabel.text = [titles objectAtIndex:indexPath.row];
-    //cell.detailTextLabel.text = @"test";
-    cell.detailTextLabel.text = [subReddits objectAtIndex:indexPath.row];
-    return cell;
 }
 
+
+- (void)configureBasicCell:(FrontPageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
+    cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
+    cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
+}
+
+
+- (void)configureImageCell:(FrontPageTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
+    cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
+    cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
+    cell.customImageView.image = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
+}
+
+-(BOOL) hasImageAtIndexPath: (NSIndexPath *) indexPath {
+    if ([[tableContents objectAtIndex:indexPath.row] objectForKey:@"thumbnail"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -113,20 +137,40 @@
 */
 
 
+// Adapted from http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout
+ // TODO: Finish
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static FrontPageTableViewCell *sizingCell = nil;
+    
+    //  GCD, see https://developer.apple.com/library/mac/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html#//apple_ref/c/func/dispatch_once
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //  This part is only ran once
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"frontPageTableCell"];
+    });
+    [self configureBasicCell:sizingCell atIndexPath:indexPath];
+    [sizingCell setNeedsLayout];
+    [sizingCell setNeedsDisplay];
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1.0f;
+    
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    // TODO: use new dictionary?
     if([[segue identifier]isEqualToString:@"showPostDetail"]) {
-        PostDetailViewController *postDetailViewController = [segue destinationViewController];
-        NSIndexPath *currentPath = [self.FrontPageTableView indexPathForSelectedRow];
-        //NSLog(@"%ld", (long)[currentPath row]);
-        NSArray *test = [self.apiCall dataForKeyArray:@"children"];
-        //NSLog(@"%@", [test objectAtIndex:(long)[currentPath row]]);
-        postDetailViewController.postContent = test[[currentPath row]];
-        
+        NSLog(@"Segue recognized");
+        SelfPostViewController *postDetailViewController = [segue destinationViewController];
+        NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
+        NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
+        postDetailViewController.postURLString = postURLString;
+        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
     }
 }
 

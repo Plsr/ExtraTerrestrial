@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostDetailViewController : UIViewController
+@interface SelfPostViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *postContent;
+@property (strong, nonatomic) NSString *postURLString;
+@property  BOOL isSelf;
 
 @end

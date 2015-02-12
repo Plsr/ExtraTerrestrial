@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RedditAPICall.h"
-#import "PostDetailViewController.h"
+#import "SelfPostViewController.h"
+#import "FrontPageTableViewCell.h"
+#import "FrontPageTableViewImageCell.h"
 
 @interface ForntPageTableViewController : UITableViewController
 
