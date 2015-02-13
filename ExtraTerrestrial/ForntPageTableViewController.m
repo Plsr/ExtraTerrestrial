@@ -170,6 +170,8 @@
         NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
         NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
         postDetailViewController.postURLString = postURLString;
+        
+        //TODO: Use isSelf to check which view should be loaded
         postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
     }
 }

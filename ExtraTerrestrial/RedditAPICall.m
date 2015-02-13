@@ -9,6 +9,7 @@
 #import "RedditAPICall.h"
 
 //  Constant Strings
+//  TODO: Clean up!
 static NSString * const kDataStr = @"data";
 static NSString * const kChildrenStr = @"children";
 static NSString * const kBeforeString = @"before";
@@ -81,21 +82,30 @@ static NSString * const kAfterStr = @"after";
 }
 
 /*
- *  Returns an Dictionary with Arrays for all given keys. 
- *  Note that it returns an Array with the values of _every_ child for the given key.
- *  The given keys are copied to the Dictionary as keys.
+ *  Returns an Array with Dictionaries for all given keys (For 25 Children that will be
+ *  Array[24] with an NSDictionary of the demanded keys and vlaues at every position).
+ *  For non-valid values (e.g. thumbnail if there istn't one), the keys and values are simply skipped.
+ *  The submitted keys are the same in the returned Dicitionaries.
  */
 -(NSArray *)contentOfChildrenForKeys:(NSArray *)theKeys {
     NSMutableDictionary *dataSet = [[NSMutableDictionary alloc] initWithCapacity:[theKeys count]];
+    // Init an Array with a slot for every child. Usually an API-Call returns 25 children.
     NSMutableArray *preparedContent = [[NSMutableArray alloc] initWithCapacity:[[self.apiCallReturns valueForKey:@"children"] count]];
     
+    // Enter every child
     for (NSObject *child in [self.apiCallReturns valueForKey:@"children"]) {
+        // Check every demanded key
         for (NSString *key in theKeys) {
+            // A child has a thumbnail if the thumbnail-field contains a valid URL.
+            // If it has a thumbnail, the URL is converted to an UIImage, so that this does not need to be done while building the Table.
+            // If it does not have a thumbnail, the "thumbnail"-key will not be set.
             if([key isEqualToString:@"thumbnail"]) {
-                if([self thumbnailURLHasContent:[[child valueForKey:@"data"] valueForKey:key]]){
-                    [dataSet setObject:[self imageFromURL:[NSURL URLWithString:[[child valueForKey:@"data"] valueForKey:key]]] forKey:key];
+                NSURL *candidateURL = [NSURL URLWithString:[[child valueForKey:@"data"] valueForKey:key]];
+                if([self thumbnailURLIsValid:candidateURL]){
+                    [dataSet setObject:[self imageFromURL:candidateURL] forKey:key];
                 }
             } else {
+                // For every other key, the given value and key can simply be copied.
                 [dataSet setObject:[[child valueForKey:@"data"] valueForKey:key] forKey:key];
             }
         }
@@ -106,17 +116,23 @@ static NSString * const kAfterStr = @"after";
     return preparedContent;
 }
 
+/*
+ *  Helper method to make shorter method calls possible.
+ */
 -(UIImage *) imageFromURL: (NSURL *) url {
     return [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
 }
 
 
--(BOOL) thumbnailURLHasContent: (NSString *) url {
-    //TODO: check with regex
-    if([url isEqualToString:@""] || [url isEqualToString:@"self"] || [url isEqualToString:@"default"]){
-        return NO;
-    } else {
+/*
+ *  If the URL was malformed it will be nil.
+ *  In addition, check for scheme and host (see http://stackoverflow.com/a/5081447/4181679 )
+ */
+-(BOOL) thumbnailURLIsValid: (NSURL *) url {
+    if(url && url.scheme && url.host) {
         return YES;
+    } else {
+        return NO;
     }
 }
 
