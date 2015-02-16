@@ -90,7 +90,8 @@ static NSString * const kAfterStr = @"after";
 -(NSArray *)contentOfChildrenForKeys:(NSArray *)theKeys {
     NSMutableDictionary *dataSet = [[NSMutableDictionary alloc] initWithCapacity:[theKeys count]];
     // Init an Array with a slot for every child. Usually an API-Call returns 25 children.
-    NSMutableArray *preparedContent = [[NSMutableArray alloc] initWithCapacity:[[self.apiCallReturns valueForKey:@"children"] count]];
+    NSUInteger numberOfChildren = [[self.apiCallReturns valueForKey:@"children"] count];
+    NSMutableArray *preparedContent = [[NSMutableArray alloc] initWithCapacity:numberOfChildren];
     
     // Enter every child
     for (NSObject *child in [self.apiCallReturns valueForKey:@"children"]) {
@@ -109,6 +110,7 @@ static NSString * const kAfterStr = @"after";
                 [dataSet setObject:[[child valueForKey:@"data"] valueForKey:key] forKey:key];
             }
         }
+        
         [preparedContent addObject:[NSDictionary dictionaryWithDictionary:dataSet]];
         [dataSet removeAllObjects];
     }

@@ -49,4 +49,10 @@
     return requestReturns;
 }
 
+-(NSDictionary *)postContentForKeys:(NSArray *)theKeys {
+    NSDictionary *postData = [[[self.apiCallReturns objectAtIndex:0] objectForKey:@"data"] objectForKey:@"children"];
+    // Someone at Apple already wrote the method I need, how convenient.
+    return [postData dictionaryWithValuesForKeys:theKeys];
+}
+
 @end

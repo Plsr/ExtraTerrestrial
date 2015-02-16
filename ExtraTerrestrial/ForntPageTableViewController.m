@@ -31,7 +31,7 @@
 
     childrenData = [self.apiCall.apiCallReturns valueForKey:@"children"];
     
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
     //test = [tableContents objectForKey:@"thumbnail"];
     
@@ -165,14 +165,15 @@
     // Pass the selected object to the new view controller.
     // TODO: use new dictionary?
     if([[segue identifier]isEqualToString:@"showPostDetail"]) {
-        NSLog(@"Segue recognized");
-        SelfPostViewController *postDetailViewController = [segue destinationViewController];
+        //NSLog(@"Segue recognized");
+        SelfPostTableViewController *postDetailViewController = [segue destinationViewController];
         NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
-        NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
-        postDetailViewController.postURLString = postURLString;
+        postDetailViewController.postData = [tableContents objectAtIndex:currentPath.row];
+//        NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
+//        postDetailViewController.postURLString = postURLString;
         
         //TODO: Use isSelf to check which view should be loaded
-        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
+//        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
     }
 }
 
