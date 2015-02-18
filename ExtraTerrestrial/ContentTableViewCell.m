@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "TitleTableViewCell.h"
+#import "ContentTableViewCell.h"
 
-@implementation TitleTableViewCell
+@implementation ContentTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

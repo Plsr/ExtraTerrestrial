@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SinglePostAPICall.h"
-#import "TitleTableViewCell.h"
+#import "ContentTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
 
 @interface SelfPostTableViewController : UITableViewController

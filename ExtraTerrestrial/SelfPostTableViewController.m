@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", self.postData);
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
+    //NSLog(@"%@", self.postData);
     
     //NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
@@ -49,22 +51,25 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *titleCellIdentifier = @"titleCell";
-    TitleTableViewCell *titleCell = [tableView dequeueReusableCellWithIdentifier:titleCellIdentifier];
-    titleCell.title.text = [self.postData objectForKey:@"title"];
-    titleCell.author.text = [self.postData objectForKey:@"author"];
+    static NSString *contentCellIdentifier = @"contentCell";
+    ContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:contentCellIdentifier];
+    contentCell.titleLabel.text = [self.postData objectForKey:@"title"];
+    contentCell.authorLabel.text = [self.postData objectForKey:@"author"];
     NSString *htmlSelftext = [self createStringForWebView:[self.postData objectForKey:@"selftext"]];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlSelftext dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    titleCell.body.attributedText = attributedString;
+    contentCell.contentTextView.attributedText = attributedString;
+    [contentCell.contentTextView setFont:[UIFont systemFontOfSize:17]];
     
-    //titleCell.body.text = [self.postData objectForKey:@"selftext_html"];
-    //titleCell.score.text = [self.postData objectForKey:@"score"];
-    return titleCell;
+    // Update constraints after elements are filled with content.
+    [contentCell setNeedsUpdateConstraints];
+    [contentCell updateConstraintsIfNeeded];
+    
+    return contentCell;
 }
 
-
+/*
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static TitleTableViewCell *sizingCell = nil;
+    static ContentTableViewCell *sizingCell = nil;
     
     //  GCD, see https://developer.apple.com/library/mac/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html#//apple_ref/c/func/dispatch_once
     static dispatch_once_t onceToken;
@@ -85,7 +90,7 @@
     return size.height + 1.0f;
     
 }
-
+*/
 
 
 // None of the Table Cells are selectable
@@ -104,14 +109,14 @@
     return validPermalinkURL;
 }
 
-
+// TODO: rename function
 -(NSString *) createStringForWebView: (NSString *) body {
     NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];
     NSError *error;
     NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:body error:&error];
     [html appendString:htmlString];
     [html appendString:@"</body></html>"];
-    NSLog(@"%@", [html description]);
+    //NSLog(@"%@", [html description]);
     return [html description];
 }
 /*

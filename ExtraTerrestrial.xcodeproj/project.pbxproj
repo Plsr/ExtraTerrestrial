@@ -20,7 +20,7 @@
 		D9884D9E1A7013970083E2CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9D1A7013970083E2CD /* Images.xcassets */; };
 		D9884DA11A7013970083E2CD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9F1A7013970083E2CD /* LaunchScreen.xib */; };
 		D9884DAD1A7013970083E2CD /* ExtraTerrestrialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */; };
-		D9B2A6791A8F6BCB00B787DE /* TitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6781A8F6BCB00B787DE /* TitleTableViewCell.m */; };
+		D9B2A6791A8F6BCB00B787DE /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */; };
 		D9B2A6A01A94BCB900B787DE /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B2A69B1A94BCA800B787DE /* libMMMarkdown-iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -88,8 +88,8 @@
 		D9884DA61A7013970083E2CD /* ExtraTerrestrialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtraTerrestrialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9884DAB1A7013970083E2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtraTerrestrialTests.m; sourceTree = "<group>"; };
-		D9B2A6771A8F6BCB00B787DE /* TitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTableViewCell.h; sourceTree = "<group>"; };
-		D9B2A6781A8F6BCB00B787DE /* TitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTableViewCell.m; sourceTree = "<group>"; };
+		D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTableViewCell.h; sourceTree = "<group>"; };
+		D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTableViewCell.m; sourceTree = "<group>"; };
 		D9B2A6911A94BCA800B787DE /* MMMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMMarkdown.xcodeproj; path = MMMarkdown/MMMarkdown.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,8 +149,8 @@
 		D9684EB01A8CE9D300845C40 /* SinglePost */ = {
 			isa = PBXGroup;
 			children = (
-				D9B2A6771A8F6BCB00B787DE /* TitleTableViewCell.h */,
-				D9B2A6781A8F6BCB00B787DE /* TitleTableViewCell.m */,
+				D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */,
+				D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */,
 				D9684EB71A8E1B6E00845C40 /* SelfPostTableViewController.h */,
 				D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */,
 			);
@@ -366,7 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B2A6791A8F6BCB00B787DE /* TitleTableViewCell.m in Sources */,
+				D9B2A6791A8F6BCB00B787DE /* ContentTableViewCell.m in Sources */,
 				D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */,
 				D9884D991A7013970083E2CD /* ViewController.m in Sources */,
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
