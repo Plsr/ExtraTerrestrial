@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "FrontPageTableViewImageCell.h"
+#import "SubredditTableViewImageCell.h"
 
-@implementation FrontPageTableViewImageCell
+@implementation SubredditTableViewImageCell
 
 /*
 // Only override drawRect: if you perform custom drawing.

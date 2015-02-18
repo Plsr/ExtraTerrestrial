@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "FrontPageTableViewCell.h"
+#import "SubredditTableViewCell.h"
 
-@interface FrontPageTableViewImageCell : FrontPageTableViewCell
+@interface SubredditTableViewImageCell : SubredditTableViewCell
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *customImageView;

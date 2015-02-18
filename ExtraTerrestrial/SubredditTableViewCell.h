@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FrontPageTableViewCell : UITableViewCell
+@interface SubredditTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subredditLabel;

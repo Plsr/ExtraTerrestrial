@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "RedditAPICall.h"
 #import "SelfPostTableViewController.h"
-#import "FrontPageTableViewCell.h"
-#import "FrontPageTableViewImageCell.h"
+#import "SubredditTableViewCell.h"
+#import "SubredditTableViewImageCell.h"
 
-@interface ForntPageTableViewController : UITableViewController
+@interface SubredditTableViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *FrontPageTableView;
 

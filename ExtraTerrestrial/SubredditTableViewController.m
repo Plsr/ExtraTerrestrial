@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "ForntPageTableViewController.h"
+#import "SubredditTableViewController.h"
 
-@interface ForntPageTableViewController ()
+@interface SubredditTableViewController ()
 {
     NSArray *childrenData;
     NSURL *frontpageURL;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ForntPageTableViewController
+@implementation SubredditTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,11 +68,11 @@
     static NSString *frontPageViewTableIdentifier = @"frontPageTableViewCell";
     
     if([self hasImageAtIndexPath:indexPath]) {
-        FrontPageTableViewImageCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageViewTableIdentifier];
+        SubredditTableViewImageCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageViewTableIdentifier];
         [self configureImageCell:cell atIndexPath:indexPath];
         return cell;
     } else {
-        FrontPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
+        SubredditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
         [self configureBasicCell:cell atIndexPath:indexPath];
         return cell;
     }
@@ -80,14 +80,14 @@
 }
 
 
-- (void)configureBasicCell:(FrontPageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureBasicCell:(SubredditTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
 }
 
 
-- (void)configureImageCell:(FrontPageTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureImageCell:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
@@ -140,7 +140,7 @@
 // Adapted from http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout
  // TODO: Finish
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static FrontPageTableViewCell *sizingCell = nil;
+    static SubredditTableViewCell *sizingCell = nil;
     
     //  GCD, see https://developer.apple.com/library/mac/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html#//apple_ref/c/func/dispatch_once
     static dispatch_once_t onceToken;
@@ -177,5 +177,12 @@
     }
 }
 
+
+/*
+ *  Checks if the post at the given index of the posts array is a self.subreddit post.
+ */
+-(BOOL) isSelfPost: (NSUInteger) indexOfPost  {
+    return [[[tableContents objectAtIndex:indexOfPost] objectForKey:@"is_self"] boolValue];
+}
 
 @end

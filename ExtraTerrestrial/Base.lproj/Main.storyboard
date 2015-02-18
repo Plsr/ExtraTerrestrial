@@ -8,13 +8,13 @@
         <!--Test-->
         <scene sceneID="QOr-2P-GgH">
             <objects>
-                <tableViewController id="9kv-k1-wRX" customClass="ForntPageTableViewController" sceneMemberID="viewController">
+                <tableViewController id="9kv-k1-wRX" customClass="SubredditTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="22" sectionFooterHeight="22" id="b8s-hz-GmB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="frontPageTableViewCell" rowHeight="106" id="Woz-LV-mje" customClass="FrontPageTableViewImageCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="frontPageTableViewCell" rowHeight="106" id="Woz-LV-mje" customClass="SubredditTableViewImageCell">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Woz-LV-mje" id="0cA-un-EyP">
@@ -176,7 +176,7 @@
                                     <segue destination="pwR-go-pwZ" kind="show" identifier="showPostDetail" id="pRy-s8-xBv"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="frontPageTableCell" rowHeight="106" id="mAf-PG-hcs" customClass="FrontPageTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="frontPageTableCell" rowHeight="106" id="mAf-PG-hcs" customClass="SubredditTableViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mAf-PG-hcs" id="hIb-B4-J1d">
@@ -379,7 +379,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSp-8y-A8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="-163"/>
+            <point key="canvasLocation" x="155" y="-163"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kt8-35-4p9">
@@ -399,6 +399,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="c27-bL-Qvj"/>
+        <segue reference="pRy-s8-xBv"/>
     </inferredMetricsTieBreakers>
 </document>

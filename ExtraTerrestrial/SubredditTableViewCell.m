@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "FrontPageTableViewCell.h"
+#import "SubredditTableViewCell.h"
 
-@implementation FrontPageTableViewCell
+@implementation SubredditTableViewCell
 
 @synthesize titleLabel, subredditLabel, destinationLabel;
 

@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = D91328AF1A728E5A004FC6AE /* RedditAPICall.m */; };
-		D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */; };
-		D9684EA91A8B603C00845C40 /* FrontPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */; };
-		D9684EAC1A8B9E6800845C40 /* FrontPageTableViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */; };
+		D95CE1461A8A3ED2000848DA /* SubredditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */; };
+		D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EA81A8B603C00845C40 /* SubredditTableViewCell.m */; };
+		D9684EAC1A8B9E6800845C40 /* SubredditTableViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EAB1A8B9E6800845C40 /* SubredditTableViewImageCell.m */; };
 		D9684EB31A8D1BDB00845C40 /* SinglePostAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EB21A8D1BDB00845C40 /* SinglePostAPICall.m */; };
 		D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */; };
 		D9884D931A7013970083E2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D921A7013970083E2CD /* main.m */; };
@@ -65,12 +65,12 @@
 /* Begin PBXFileReference section */
 		D91328AE1A728E5A004FC6AE /* RedditAPICall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedditAPICall.h; sourceTree = "<group>"; };
 		D91328AF1A728E5A004FC6AE /* RedditAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedditAPICall.m; sourceTree = "<group>"; };
-		D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForntPageTableViewController.h; sourceTree = "<group>"; };
-		D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForntPageTableViewController.m; sourceTree = "<group>"; };
-		D9684EA71A8B603C00845C40 /* FrontPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontPageTableViewCell.h; sourceTree = "<group>"; };
-		D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontPageTableViewCell.m; sourceTree = "<group>"; };
-		D9684EAA1A8B9E6800845C40 /* FrontPageTableViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontPageTableViewImageCell.h; sourceTree = "<group>"; };
-		D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontPageTableViewImageCell.m; sourceTree = "<group>"; };
+		D95CE1441A8A3ED2000848DA /* SubredditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubredditTableViewController.h; sourceTree = "<group>"; };
+		D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubredditTableViewController.m; sourceTree = "<group>"; };
+		D9684EA71A8B603C00845C40 /* SubredditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubredditTableViewCell.h; sourceTree = "<group>"; };
+		D9684EA81A8B603C00845C40 /* SubredditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubredditTableViewCell.m; sourceTree = "<group>"; };
+		D9684EAA1A8B9E6800845C40 /* SubredditTableViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubredditTableViewImageCell.h; sourceTree = "<group>"; };
+		D9684EAB1A8B9E6800845C40 /* SubredditTableViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubredditTableViewImageCell.m; sourceTree = "<group>"; };
 		D9684EB11A8D1BDB00845C40 /* SinglePostAPICall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePostAPICall.h; sourceTree = "<group>"; };
 		D9684EB21A8D1BDB00845C40 /* SinglePostAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePostAPICall.m; sourceTree = "<group>"; };
 		D9684EB71A8E1B6E00845C40 /* SelfPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfPostTableViewController.h; sourceTree = "<group>"; };
@@ -136,12 +136,12 @@
 		D9684EAF1A8CE9C300845C40 /* Subreddit */ = {
 			isa = PBXGroup;
 			children = (
-				D95CE1441A8A3ED2000848DA /* ForntPageTableViewController.h */,
-				D95CE1451A8A3ED2000848DA /* ForntPageTableViewController.m */,
-				D9684EAA1A8B9E6800845C40 /* FrontPageTableViewImageCell.h */,
-				D9684EAB1A8B9E6800845C40 /* FrontPageTableViewImageCell.m */,
-				D9684EA71A8B603C00845C40 /* FrontPageTableViewCell.h */,
-				D9684EA81A8B603C00845C40 /* FrontPageTableViewCell.m */,
+				D95CE1441A8A3ED2000848DA /* SubredditTableViewController.h */,
+				D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */,
+				D9684EAA1A8B9E6800845C40 /* SubredditTableViewImageCell.h */,
+				D9684EAB1A8B9E6800845C40 /* SubredditTableViewImageCell.m */,
+				D9684EA71A8B603C00845C40 /* SubredditTableViewCell.h */,
+				D9684EA81A8B603C00845C40 /* SubredditTableViewCell.m */,
 			);
 			name = Subreddit;
 			sourceTree = "<group>";
@@ -370,12 +370,12 @@
 				D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */,
 				D9884D991A7013970083E2CD /* ViewController.m in Sources */,
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
-				D9684EA91A8B603C00845C40 /* FrontPageTableViewCell.m in Sources */,
+				D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */,
 				D9884D931A7013970083E2CD /* main.m in Sources */,
-				D9684EAC1A8B9E6800845C40 /* FrontPageTableViewImageCell.m in Sources */,
+				D9684EAC1A8B9E6800845C40 /* SubredditTableViewImageCell.m in Sources */,
 				D9684EB31A8D1BDB00845C40 /* SinglePostAPICall.m in Sources */,
 				D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */,
-				D95CE1461A8A3ED2000848DA /* ForntPageTableViewController.m in Sources */,
+				D95CE1461A8A3ED2000848DA /* SubredditTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
