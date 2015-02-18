@@ -53,7 +53,11 @@
     TitleTableViewCell *titleCell = [tableView dequeueReusableCellWithIdentifier:titleCellIdentifier];
     titleCell.title.text = [self.postData objectForKey:@"title"];
     titleCell.author.text = [self.postData objectForKey:@"author"];
-    titleCell.body.text = [self.postData objectForKey:@"selftext"];
+    NSString *htmlSelftext = [self createStringForWebView:[self.postData objectForKey:@"selftext"]];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlSelftext dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    titleCell.body.attributedText = attributedString;
+    
+    //titleCell.body.text = [self.postData objectForKey:@"selftext_html"];
     //titleCell.score.text = [self.postData objectForKey:@"score"];
     return titleCell;
 }
@@ -70,12 +74,24 @@
     });
     sizingCell.title.text = [self.postData objectForKey:@"title"];
     sizingCell.author.text = [self.postData objectForKey:@"author"];
-    sizingCell.body.text = [self.postData objectForKey:@"selftext"];
+    NSString *htmlSelftext = [self createStringForWebView:[self.postData objectForKey:@"selftext"]];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlSelftext dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    sizingCell.body.attributedText = attributedString;
+    [self.view addSubview:sizingCell.body];
+    //sizingCell.body.text = [self.postData objectForKey:@"selftext_html"];
     [sizingCell setNeedsLayout];
     [sizingCell setNeedsDisplay];
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height + 1.0f;
     
+}
+
+
+
+// None of the Table Cells are selectable
+// TODO: Disable later for replys of comments etc.
+- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)path {
+    return nil;
 }
 
 
@@ -88,6 +104,16 @@
     return validPermalinkURL;
 }
 
+
+-(NSString *) createStringForWebView: (NSString *) body {
+    NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];
+    NSError *error;
+    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:body error:&error];
+    [html appendString:htmlString];
+    [html appendString:@"</body></html>"];
+    NSLog(@"%@", [html description]);
+    return [html description];
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
