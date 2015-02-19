@@ -63,39 +63,54 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSLog(@"DEBUG");
-    static NSString *frontPageTableIdentifier = @"frontPageTableCell";
-    static NSString *frontPageViewTableIdentifier = @"frontPageTableViewCell";
+
+    static NSString *selfPostTableIdentifier = @"selfPostTableCell";
+    static NSString *linkPostTableIdentifier = @"linkPostTableViewCell";
     
-    if([self hasImageAtIndexPath:indexPath]) {
-        SubredditTableViewImageCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageViewTableIdentifier];
-        [self configureImageCell:cell atIndexPath:indexPath];
+    if([self isSelfPost:indexPath.row]) {
+        SubredditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:selfPostTableIdentifier];
+        [self configureSelfPostCell:cell atIndexPath:indexPath];
         return cell;
     } else {
-        SubredditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:frontPageTableIdentifier];
-        [self configureBasicCell:cell atIndexPath:indexPath];
-        return cell;
+        SubredditTableViewImageCell *cell = [tableView dequeueReusableCellWithIdentifier:linkPostTableIdentifier];
+        if([self hasImageAtIndexPath:indexPath.row]) {
+            [self configureLinkPostCellWithThumbnail:cell atIndexPath:indexPath];
+            return cell;
+        } else {
+            [self configureLinkPostCellWithPlaceholder:cell atIndexPath:indexPath];
+            return cell;
+        }
     }
-    
+
 }
 
 
-- (void)configureBasicCell:(SubredditTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureSelfPostCell:(SubredditTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
 }
 
 
-- (void)configureImageCell:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureLinkPostCellWithThumbnail:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
     cell.customImageView.image = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
 }
 
--(BOOL) hasImageAtIndexPath: (NSIndexPath *) indexPath {
-    if ([[tableContents objectAtIndex:indexPath.row] objectForKey:@"thumbnail"]) {
+
+- (void)configureLinkPostCellWithPlaceholder:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
+    cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
+    cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
+    cell.customImageView.image = [UIImage imageNamed:@"globe_icon"];
+}
+
+
+
+-(BOOL) hasImageAtIndexPath: (NSUInteger) indexOfPost {
+    if ([[tableContents objectAtIndex:indexOfPost] objectForKey:@"thumbnail"]) {
         return YES;
     } else {
         return NO;
@@ -139,6 +154,7 @@
 
 // Adapted from http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout
  // TODO: Finish
+// TODO: needed?
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     static SubredditTableViewCell *sizingCell = nil;
     
@@ -146,9 +162,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //  This part is only ran once
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"frontPageTableCell"];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"selfPostTableCell"];
     });
-    [self configureBasicCell:sizingCell atIndexPath:indexPath];
+    [self configureSelfPostCell:sizingCell atIndexPath:indexPath];
     [sizingCell setNeedsLayout];
     [sizingCell setNeedsDisplay];
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
