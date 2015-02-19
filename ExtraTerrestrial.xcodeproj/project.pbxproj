@@ -22,6 +22,7 @@
 		D9884DAD1A7013970083E2CD /* ExtraTerrestrialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */; };
 		D9B2A6791A8F6BCB00B787DE /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */; };
 		D9B2A6A01A94BCB900B787DE /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B2A69B1A94BCA800B787DE /* libMMMarkdown-iOS.a */; };
+		D9B2A6A31A96139100B787DE /* LinkPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6A21A96139100B787DE /* LinkPostViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTableViewCell.h; sourceTree = "<group>"; };
 		D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTableViewCell.m; sourceTree = "<group>"; };
 		D9B2A6911A94BCA800B787DE /* MMMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMMarkdown.xcodeproj; path = MMMarkdown/MMMarkdown.xcodeproj; sourceTree = "<group>"; };
+		D9B2A6A11A96139100B787DE /* LinkPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkPostViewController.h; sourceTree = "<group>"; };
+		D9B2A6A21A96139100B787DE /* LinkPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkPostViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +152,8 @@
 		D9684EB01A8CE9D300845C40 /* SinglePost */ = {
 			isa = PBXGroup;
 			children = (
-				D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */,
-				D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */,
-				D9684EB71A8E1B6E00845C40 /* SelfPostTableViewController.h */,
-				D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */,
+				D9B2A6A51A9613A200B787DE /* Link */,
+				D9B2A6A41A96139C00B787DE /* Self */,
 			);
 			name = SinglePost;
 			sourceTree = "<group>";
@@ -227,6 +228,26 @@
 				D9B2A69F1A94BCA800B787DE /* mmmarkdown */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D9B2A6A41A96139C00B787DE /* Self */ = {
+			isa = PBXGroup;
+			children = (
+				D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */,
+				D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */,
+				D9684EB71A8E1B6E00845C40 /* SelfPostTableViewController.h */,
+				D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */,
+			);
+			name = Self;
+			sourceTree = "<group>";
+		};
+		D9B2A6A51A9613A200B787DE /* Link */ = {
+			isa = PBXGroup;
+			children = (
+				D9B2A6A11A96139100B787DE /* LinkPostViewController.h */,
+				D9B2A6A21A96139100B787DE /* LinkPostViewController.m */,
+			);
+			name = Link;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +393,7 @@
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
 				D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */,
 				D9884D931A7013970083E2CD /* main.m in Sources */,
+				D9B2A6A31A96139100B787DE /* LinkPostViewController.m in Sources */,
 				D9684EAC1A8B9E6800845C40 /* SubredditTableViewImageCell.m in Sources */,
 				D9684EB31A8D1BDB00845C40 /* SinglePostAPICall.m in Sources */,
 				D91328B01A728E5A004FC6AE /* RedditAPICall.m in Sources */,

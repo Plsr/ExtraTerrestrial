@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RedditAPICall.h"
 #import "SelfPostTableViewController.h"
+#import "LinkPostViewController.h"
 #import "SubredditTableViewCell.h"
 #import "SubredditTableViewImageCell.h"
 

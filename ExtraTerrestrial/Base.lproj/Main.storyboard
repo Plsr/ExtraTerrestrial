@@ -173,7 +173,7 @@
                                     <outlet property="destinationLabel" destination="VbJ-OS-Q9u" id="Cm5-LC-C4G"/>
                                     <outlet property="subredditLabel" destination="rUU-pa-eU8" id="kZm-sn-Ycb"/>
                                     <outlet property="titleLabel" destination="lJk-WF-aZi" id="WFr-BP-c0x"/>
-                                    <segue destination="pwR-go-pwZ" kind="show" identifier="showPostDetail" id="pRy-s8-xBv"/>
+                                    <segue destination="vnp-2O-u13" kind="show" identifier="showLinkPostDetail" id="4B6-Tz-vOw"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selfPostTableCell" rowHeight="106" id="mAf-PG-hcs" customClass="SubredditTableViewCell">
@@ -275,7 +275,7 @@
                                     <outlet property="destinationLabel" destination="B4y-UN-9GX" id="pP1-wZ-zKB"/>
                                     <outlet property="subredditLabel" destination="R8Z-ds-HTG" id="4EO-fR-CXS"/>
                                     <outlet property="titleLabel" destination="5Q3-gb-4ds" id="h2i-2X-YGz"/>
-                                    <segue destination="pwR-go-pwZ" kind="show" identifier="showPostDetail" id="c27-bL-Qvj"/>
+                                    <segue destination="pwR-go-pwZ" kind="show" identifier="showSelfPostDetail" id="c27-bL-Qvj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -293,6 +293,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9k-pe-B8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-629" y="-163"/>
+        </scene>
+        <!--Link Post View Controller-->
+        <scene sceneID="Gao-mg-C8v">
+            <objects>
+                <viewController id="vnp-2O-u13" customClass="LinkPostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bhv-Yz-394"/>
+                        <viewControllerLayoutGuide type="bottom" id="jBE-1n-rKq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mOa-uu-n63">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwJ-rl-1kl">
+                                <rect key="frame" x="279" y="289" width="32" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jBE-1n-rKq" firstAttribute="top" secondItem="OwJ-rl-1kl" secondAttribute="bottom" constant="290" id="CkZ-ox-xSr"/>
+                            <constraint firstItem="OwJ-rl-1kl" firstAttribute="top" secondItem="Bhv-Yz-394" secondAttribute="bottom" constant="225" id="PIb-gD-jzM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OwJ-rl-1kl" secondAttribute="trailing" constant="273" id="evs-W8-5LV"/>
+                            <constraint firstItem="OwJ-rl-1kl" firstAttribute="leading" secondItem="mOa-uu-n63" secondAttribute="leadingMargin" constant="263" id="suc-PF-cti"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcq-Qg-Wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185" y="-624"/>
         </scene>
         <!--Self Post Table View Controller-->
         <scene sceneID="otP-Z8-eFB">
@@ -379,7 +411,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSp-8y-A8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="155" y="-163"/>
+            <point key="canvasLocation" x="185" y="127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kt8-35-4p9">
@@ -398,7 +430,4 @@
             <point key="canvasLocation" x="-1386" y="-163"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="pRy-s8-xBv"/>
-    </inferredMetricsTieBreakers>
 </document>

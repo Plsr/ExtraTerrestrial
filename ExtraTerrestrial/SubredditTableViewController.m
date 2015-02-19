@@ -180,7 +180,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     // TODO: use new dictionary?
-    if([[segue identifier]isEqualToString:@"showPostDetail"]) {
+    if([[segue identifier]isEqualToString:@"showSelfPostDetail"]) {
         //NSLog(@"Segue recognized");
         SelfPostTableViewController *postDetailViewController = [segue destinationViewController];
         NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
@@ -190,6 +190,8 @@
         
         //TODO: Use isSelf to check which view should be loaded
 //        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
+    } else if ([[segue identifier] isEqualToString:@"showLinkPostDetail"]) {
+        LinkPostViewController *linkPostDetailVC = [segue destinationViewController];
     }
 }
 
