@@ -139,12 +139,12 @@
 		D9684EAF1A8CE9C300845C40 /* Subreddit */ = {
 			isa = PBXGroup;
 			children = (
-				D95CE1441A8A3ED2000848DA /* SubredditTableViewController.h */,
-				D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */,
 				D9684EAA1A8B9E6800845C40 /* SubredditTableViewImageCell.h */,
 				D9684EAB1A8B9E6800845C40 /* SubredditTableViewImageCell.m */,
 				D9684EA71A8B603C00845C40 /* SubredditTableViewCell.h */,
 				D9684EA81A8B603C00845C40 /* SubredditTableViewCell.m */,
+				D95CE1441A8A3ED2000848DA /* SubredditTableViewController.h */,
+				D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */,
 			);
 			name = Subreddit;
 			sourceTree = "<group>";

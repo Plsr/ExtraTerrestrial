@@ -10,7 +10,6 @@
 
 @interface SubredditTableViewController ()
 {
-    NSArray *childrenData;
     NSURL *frontpageURL;
     NSArray *tableContents;
     NSArray *test;
@@ -25,11 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Height of the rows in the Table View
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0; // random number
+    
     // Initialize table data
     frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
     self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
-
-    childrenData = [self.apiCall.apiCallReturns valueForKey:@"children"];
     
     NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
@@ -150,27 +151,6 @@
     return YES;
 }
 */
-
-
-// Adapted from http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout
- // TODO: Finish
-// TODO: needed?
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static SubredditTableViewCell *sizingCell = nil;
-    
-    //  GCD, see https://developer.apple.com/library/mac/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html#//apple_ref/c/func/dispatch_once
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        //  This part is only ran once
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"selfPostTableCell"];
-    });
-    [self configureSelfPostCell:sizingCell atIndexPath:indexPath];
-    [sizingCell setNeedsLayout];
-    [sizingCell setNeedsDisplay];
-    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height + 1.0f;
-    
-}
 
 
 #pragma mark - Navigation
