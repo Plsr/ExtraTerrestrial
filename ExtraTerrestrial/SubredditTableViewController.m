@@ -108,6 +108,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
+    cell.scoreLabel.text = [[[tableContents objectAtIndex:indexPath.row] valueForKey:@"score"] stringValue];
 }
 
 
@@ -119,6 +120,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
     cell.customImageView.image = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
+    cell.scoreLabel.text = [[[tableContents objectAtIndex:indexPath.row] valueForKey:@"score"] stringValue];
 }
 
 
@@ -130,6 +132,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     cell.subredditLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"subreddit"];
     cell.destinationLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"domain"];
     cell.customImageView.image = [UIImage imageNamed:@"globe_icon"];
+    cell.scoreLabel.text = [[[tableContents objectAtIndex:indexPath.row] valueForKey:@"score"] stringValue];
 }
 
 
