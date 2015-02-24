@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface RedditAPICall : NSObject
+@interface SubredditAPICall : NSObject
 
 @property (strong, nonatomic) NSString *before;
 @property (strong, nonatomic) NSString *after;
@@ -18,9 +18,6 @@
 
 
 -(instancetype) initWithURL: (NSURL *) theURL;
--(NSArray *) dataForKeyArray: (NSString *) theKey;
--(NSDictionary *) dataForKeyDictionary: (NSString *) theKey;
-
 -(NSArray *) contentOfChildrenForKeys: (NSArray *) theKeys;
 
 @end

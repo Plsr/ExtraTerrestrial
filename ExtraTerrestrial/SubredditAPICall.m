@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "RedditAPICall.h"
+#import "SubredditAPICall.h"
 
 //  Constant Strings
 //  TODO: Clean up!
@@ -17,7 +17,7 @@ static NSString * const kAfterStr = @"after";
 
 
 
-@implementation RedditAPICall
+@implementation SubredditAPICall
 
 -(instancetype)initWithURL:(NSURL *)theURL {
     self = [super init];
@@ -59,26 +59,6 @@ static NSString * const kAfterStr = @"after";
     }
 
     return requestReturns;
-}
-
-
-/*
- ARE THOSE NEEDED?
- */
-
-//  Return Array with data for given Key
-//  TODO: Check if key is valid
--(NSArray *)dataForKeyArray:(NSString *)theKey {
-    NSArray *data = [self.apiCallReturns valueForKey:theKey];
-    return data;
-}
-
-
-//  Return Dictionary with data for given key
-//  TODO: Check if key is valid
--(NSDictionary *)dataForKeyDictionary:(NSString *)theKey {
-    NSDictionary *data = [self.apiCallReturns valueForKey:theKey];
-    return data;
 }
 
 /*

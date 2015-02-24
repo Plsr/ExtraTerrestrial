@@ -32,7 +32,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     
     // Initialize table data
     frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
-    self.apiCall = [[RedditAPICall alloc] initWithURL:frontpageURL];
+    self.apiCall = [[SubredditAPICall alloc] initWithURL:frontpageURL];
     NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
     
