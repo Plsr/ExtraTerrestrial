@@ -10,7 +10,7 @@
 
 @implementation SubredditTableViewCell
 
-@synthesize titleLabel, subredditLabel, destinationLabel;
+@synthesize titleLabel, subredditLabel, destinationLabel, scoreLabel;
 
 - (void)awakeFromNib {
     // Initialization code

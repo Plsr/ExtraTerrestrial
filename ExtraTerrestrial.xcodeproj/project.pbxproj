@@ -15,7 +15,6 @@
 		D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */; };
 		D9884D931A7013970083E2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D921A7013970083E2CD /* main.m */; };
 		D9884D961A7013970083E2CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D951A7013970083E2CD /* AppDelegate.m */; };
-		D9884D991A7013970083E2CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884D981A7013970083E2CD /* ViewController.m */; };
 		D9884D9C1A7013970083E2CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9A1A7013970083E2CD /* Main.storyboard */; };
 		D9884D9E1A7013970083E2CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9D1A7013970083E2CD /* Images.xcassets */; };
 		D9884DA11A7013970083E2CD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9F1A7013970083E2CD /* LaunchScreen.xib */; };
@@ -81,8 +80,6 @@
 		D9884D921A7013970083E2CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D9884D941A7013970083E2CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D9884D951A7013970083E2CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D9884D971A7013970083E2CD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D9884D981A7013970083E2CD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D9884D9B1A7013970083E2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D9884D9D1A7013970083E2CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D9884DA01A7013970083E2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -184,8 +181,6 @@
 				D9684EAD1A8CE9AE00845C40 /* View */,
 				D9884D941A7013970083E2CD /* AppDelegate.h */,
 				D9884D951A7013970083E2CD /* AppDelegate.m */,
-				D9884D971A7013970083E2CD /* ViewController.h */,
-				D9884D981A7013970083E2CD /* ViewController.m */,
 				D9884D9D1A7013970083E2CD /* Images.xcassets */,
 				D9884D9F1A7013970083E2CD /* LaunchScreen.xib */,
 				D9884D901A7013970083E2CD /* Supporting Files */,
@@ -389,7 +384,6 @@
 			files = (
 				D9B2A6791A8F6BCB00B787DE /* ContentTableViewCell.m in Sources */,
 				D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */,
-				D9884D991A7013970083E2CD /* ViewController.m in Sources */,
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
 				D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */,
 				D9884D931A7013970083E2CD /* main.m in Sources */,
