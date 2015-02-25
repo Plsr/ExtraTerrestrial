@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "RedditAPICall.h"
 
-@interface SubredditAPICall : NSObject
+@interface SubredditDataModel : NSObject
 
 @property (strong, nonatomic) NSString *before;
 @property (strong, nonatomic) NSString *after;
-@property (strong, nonatomic) NSDictionary *apiCallReturns;
+@property (strong, nonatomic) NSDictionary *payload;
 
 
 

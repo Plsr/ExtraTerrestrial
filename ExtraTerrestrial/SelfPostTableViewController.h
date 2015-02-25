@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SinglePostAPICall.h"
+#import "SinglePostDataModel.h"
 #import "ContentTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
 

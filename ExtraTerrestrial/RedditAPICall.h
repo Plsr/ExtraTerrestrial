@@ -1,5 +1,5 @@
 //
-//  UserAPICall.h
+//  RedditAPICall.h
 //  ExtraTerrestrial
 //
 //  Created by Christian Poplawski on 24/02/15.
@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserAPICall : NSObject
+@interface RedditAPICall : NSObject
+
+-(NSDictionary *) dictionaryWithDataForURL:(NSURL *) url;
+-(NSArray *) arrayWithDataForURL: (NSURL *) url;
 
 @end

@@ -9,14 +9,18 @@
 #import "MainMenuTableViewController.h"
 
 @interface MainMenuTableViewController ()
-
+{
+    NSArray *menuContents;
+}
 @end
 
 @implementation MainMenuTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    MenuDataModel *dataModel = [[MenuDataModel alloc]initWithURL:[NSURL URLWithString:@"http://reddit.com/reddits.json"]];
+    menuContents = [dataModel subredditNames];
+    NSLog(@"%@", menuContents);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -34,14 +38,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [menuContents count];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MenuTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"subredditCell"];
+    cell.subredditLabel.text = [menuContents objectAtIndex:indexPath.row];
+    return cell;
+    
+    
+}
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,14 +101,30 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if([[segue identifier]isEqualToString:@"showSubredditOverview"]) {
+        UINavigationController *destinationNavController = segue.destinationViewController;
+        NSInteger currentIndex = [[self.tableView indexPathForSelectedRow] row];
+        NSLog(@"%@", [menuContents objectAtIndex:currentIndex]);
+        SubredditTableViewController *subredditViewController = destinationNavController.viewControllers[0];
+        subredditViewController.subredditTitle = [menuContents objectAtIndex:currentIndex];
+        subredditViewController.subredditURL = [self constructURLFromTitle:[menuContents objectAtIndex:currentIndex]];
+    }
 }
-*/
+
+
+-(NSURL *) constructURLFromTitle: (NSString *) title {
+    NSMutableString *construct = [NSMutableString stringWithString:@"http://reddit.com/r/"];
+    [construct appendString:title];
+    [construct appendString:@".json"];
+    return [NSURL URLWithString:construct];
+}
 
 @end

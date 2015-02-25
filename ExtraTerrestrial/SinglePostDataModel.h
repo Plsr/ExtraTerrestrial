@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RedditAPICall.h"
 
-@interface SinglePostAPICall : NSObject
+@interface SinglePostDataModel : NSObject
 
 @property (strong, nonatomic) NSArray *apiCallReturns;
 

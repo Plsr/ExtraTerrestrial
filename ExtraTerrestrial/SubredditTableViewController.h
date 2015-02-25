@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SubredditAPICall.h"
+#import "SubredditDataModel.h"
 #import "SelfPostTableViewController.h"
 #import "LinkPostViewController.h"
 #import "SubredditTableViewCell.h"
@@ -16,7 +16,9 @@
 @interface SubredditTableViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *FrontPageTableView;
+@property SubredditDataModel *apiCall;
+@property NSString *subredditTitle;
+@property NSURL *subredditURL;
 
-@property SubredditAPICall *apiCall;
 
 @end

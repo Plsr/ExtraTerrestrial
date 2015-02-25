@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuDataModel.h"
+#import "MenuTableViewCell.h"
+#import "SubredditTableViewController.h"
 
 @interface MainMenuTableViewController : UITableViewController
 

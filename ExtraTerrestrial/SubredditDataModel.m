@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 chrispop. All rights reserved.
 //
 
-#import "SubredditAPICall.h"
+#import "SubredditDataModel.h"
 
 //  Constant Strings
 //  TODO: Clean up!
@@ -17,48 +17,18 @@ static NSString * const kAfterStr = @"after";
 
 
 
-@implementation SubredditAPICall
+@implementation SubredditDataModel
 
 -(instancetype)initWithURL:(NSURL *)theURL {
     self = [super init];
     if(self) {
-        _apiCallReturns = [[self retrieveDataFromURL:theURL] valueForKey:kDataStr];
-        _before = [_apiCallReturns valueForKey:kBeforeString];
-        _after = [_apiCallReturns valueForKey:kAfterStr];
+        RedditAPICall *apiCall = [[RedditAPICall alloc] init];
+        _payload = [[apiCall dictionaryWithDataForURL:theURL] valueForKey:kDataStr];
+        _before = [_payload valueForKey:kBeforeString];
+        _after = [_payload valueForKey:kAfterStr];
         
     }
     return self;
-}
-
-
-//  Perform an API Call
--(NSDictionary *) retrieveDataFromURL:(NSURL *)targetURL {
-    
-    NSDictionary *requestReturns = [[NSDictionary alloc] init];
-    
-    //Basic URLRequest
-    NSMutableURLRequest *getRequest = [[NSMutableURLRequest alloc] initWithURL:targetURL];
-    getRequest.HTTPMethod = @"GET";
-    
-    //Set up stuff to send request and retrieve response
-    NSURLResponse *getRequestResponse = nil;
-    NSError *getRequestError = nil;
-    NSData *requestReturnData = [NSURLConnection sendSynchronousRequest:getRequest
-                                                      returningResponse:&getRequestResponse
-                                                                  error:&getRequestError];
-    
-    if(!getRequestError) {
-        NSError *jsonSerializationError = nil;
-        requestReturns = [NSJSONSerialization JSONObjectWithData:requestReturnData
-                                                         options:NSUTF8StringEncoding
-                                                           error:&jsonSerializationError];
-        
-        if(!jsonSerializationError) {
-           //TODO: handle possible errors and foo
-        }
-    }
-
-    return requestReturns;
 }
 
 /*
@@ -70,11 +40,11 @@ static NSString * const kAfterStr = @"after";
 -(NSArray *)contentOfChildrenForKeys:(NSArray *)theKeys {
     NSMutableDictionary *dataSet = [[NSMutableDictionary alloc] initWithCapacity:[theKeys count]];
     // Init an Array with a slot for every child. Usually an API-Call returns 25 children.
-    NSUInteger numberOfChildren = [[self.apiCallReturns valueForKey:@"children"] count];
+    NSUInteger numberOfChildren = [[self.payload valueForKey:@"children"] count];
     NSMutableArray *preparedContent = [[NSMutableArray alloc] initWithCapacity:numberOfChildren];
     
     // Enter every child
-    for (NSObject *child in [self.apiCallReturns valueForKey:@"children"]) {
+    for (NSObject *child in [self.payload valueForKey:@"children"]) {
         // Check every demanded key
         for (NSString *key in theKeys) {
             // A child has a thumbnail if the thumbnail-field contains a valid URL.

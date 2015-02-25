@@ -30,11 +30,16 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0; // random number
     
-    // Initialize table data
-    frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
-    self.apiCall = [[SubredditAPICall alloc] initWithURL:frontpageURL];
+    self.apiCall = [[SubredditDataModel alloc] initWithURL:self.subredditURL];
     NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
+    
+    self.navigationItem.title = self.subredditTitle;
+    
+    
+    // Initialize table data
+    //frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

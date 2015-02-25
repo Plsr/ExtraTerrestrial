@@ -481,7 +481,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="JPW-Jt-lTb">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="subredditCell" id="JPW-Jt-lTb" customClass="MenuTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JPW-Jt-lTb" id="iXA-l2-gSZ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -509,6 +509,10 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subredditLabel" destination="0Ta-Kb-x7S" id="eHX-ii-ttx"/>
+                                    <segue destination="sJo-lJ-DGq" kind="showDetail" identifier="showSubredditOverview" id="RJZ-Ii-qi2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -568,4 +572,7 @@
             <point key="canvasLocation" x="-1386" y="-163"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RJZ-Ii-qi2"/>
+    </inferredMetricsTieBreakers>
 </document>
