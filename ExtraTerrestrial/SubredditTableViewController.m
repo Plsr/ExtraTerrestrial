@@ -26,19 +26,23 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(!self.setFromSegue) {
+        self.subredditURL = [NSURL URLWithString:@"http://reddit.com/.json"];
+        self.subredditTitle = @"front";
+    }
+    
     // Height of the rows in the Table View
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0; // random number
     
     self.apiCall = [[SubredditDataModel alloc] initWithURL:self.subredditURL];
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", @"url", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
     
     self.navigationItem.title = self.subredditTitle;
-    
-    
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     // Initialize table data
-    //frontpageURL = [NSURL URLWithString:@"http://reddit.com/.json"];
+    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -204,11 +208,13 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
+    
     // TODO: use new dictionary?
     if([[segue identifier]isEqualToString:@"showSelfPostDetail"]) {
         //NSLog(@"Segue recognized");
         SelfPostTableViewController *postDetailViewController = [segue destinationViewController];
-        NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
         postDetailViewController.postData = [tableContents objectAtIndex:currentPath.row];
 //        NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
 //        postDetailViewController.postURLString = postURLString;
@@ -217,6 +223,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 //        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
     } else if ([[segue identifier] isEqualToString:@"showLinkPostDetail"]) {
         LinkPostViewController *linkPostDetailVC = [segue destinationViewController];
+        linkPostDetailVC.contentURL = [[tableContents objectAtIndex:currentPath.row] valueForKey:@"url"];
     }
 }
 

@@ -20,7 +20,8 @@
     [super viewDidLoad];
     MenuDataModel *dataModel = [[MenuDataModel alloc]initWithURL:[NSURL URLWithString:@"http://reddit.com/reddits.json"]];
     menuContents = [dataModel subredditNames];
-    NSLog(@"%@", menuContents);
+    self.navigationItem.title = @"subreddits";
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -116,11 +117,16 @@
         SubredditTableViewController *subredditViewController = destinationNavController.viewControllers[0];
         subredditViewController.subredditTitle = [menuContents objectAtIndex:currentIndex];
         subredditViewController.subredditURL = [self constructURLFromTitle:[menuContents objectAtIndex:currentIndex]];
+        subredditViewController.setFromSegue = YES;
     }
 }
 
 
 -(NSURL *) constructURLFromTitle: (NSString *) title {
+    // Front page needs to be constructed seperately since it's no API Item
+    if([title isEqualToString:@"front"]) {
+        return [NSURL URLWithString:@"http://reddit.com/.json"];
+    }
     NSMutableString *construct = [NSMutableString stringWithString:@"http://reddit.com/r/"];
     [construct appendString:title];
     [construct appendString:@".json"];

@@ -373,13 +373,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cJ-Zg-R3K">
-                                <rect key="frame" x="0.0" y="29" width="600" height="600"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cJ-Zg-R3K">
+                                <rect key="frame" x="0.0" y="64" width="600" height="565"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="2cJ-Zg-R3K" id="iRp-XC-ouh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcq-Qg-Wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -472,7 +475,7 @@
             </objects>
             <point key="canvasLocation" x="185" y="127"/>
         </scene>
-        <!--Root View Controller-->
+        <!--subreddits-->
         <scene sceneID="eHp-ri-4PK">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="aQ3-pM-zim" customClass="MainMenuTableViewController" sceneMemberID="viewController">
@@ -520,7 +523,7 @@
                             <outlet property="delegate" destination="aQ3-pM-zim" id="vL7-I9-yag"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="5VD-Ht-Zyn"/>
+                    <navigationItem key="navigationItem" title="subreddits" id="5VD-Ht-Zyn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJp-pD-MXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -573,6 +576,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="RJZ-Ii-qi2"/>
+        <segue reference="Xkw-kQ-xQs"/>
     </inferredMetricsTieBreakers>
 </document>

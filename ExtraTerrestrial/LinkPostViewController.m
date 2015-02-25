@@ -16,12 +16,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.contentURL.description]];
+    [self.webView loadRequest:request];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews {
+    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 /*

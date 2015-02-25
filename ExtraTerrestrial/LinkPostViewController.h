@@ -10,4 +10,7 @@
 
 @interface LinkPostViewController : UIViewController
 
+@property (strong, nonatomic) NSURL* contentURL;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 @end

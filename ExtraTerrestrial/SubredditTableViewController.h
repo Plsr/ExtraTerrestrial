@@ -19,6 +19,7 @@
 @property SubredditDataModel *apiCall;
 @property NSString *subredditTitle;
 @property NSURL *subredditURL;
+@property BOOL setFromSegue;
 
 
 @end

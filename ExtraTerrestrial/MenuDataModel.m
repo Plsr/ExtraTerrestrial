@@ -24,7 +24,11 @@
 
 -(NSArray *) subredditNames {
     NSArray* names = [[[[self.apiCallReturns valueForKey:@"data"] valueForKey:@"children"] valueForKey:@"data"] valueForKey:@"display_name"];
-    return names;
+    NSMutableArray *returns = [NSMutableArray arrayWithCapacity:([names count ]) +1 ];
+    // Add "front" as first item manually, since it's not provided by the api.
+    [returns addObject:@"front"];
+    [returns addObjectsFromArray:names];
+    return returns;
 }
 
 
