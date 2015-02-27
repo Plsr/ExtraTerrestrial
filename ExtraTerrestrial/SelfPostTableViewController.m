@@ -18,9 +18,13 @@
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
-    //NSLog(@"%@", self.postData);
+    self.postURLString = [self.postData objectForKey:@"permalink"];
+    NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
+    SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
+    NSArray *test = [NSArray arrayWithArray:[dataModel topLevelComments]];
+    NSLog(@"%@", [test description]);
     
-    //NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
+    
     //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
     //NSLog(@"%@", apiCall.apiCallReturns);
     // Uncomment the following line to preserve selection between presentations.

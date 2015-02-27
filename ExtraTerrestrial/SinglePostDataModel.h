@@ -11,10 +11,11 @@
 
 @interface SinglePostDataModel : NSObject
 
-@property (strong, nonatomic) NSArray *apiCallReturns;
+@property (strong, nonatomic) NSDictionary *apiCallReturns;
 
 -(instancetype) init __attribute__((unavailable("APICall must always be initialized with an URL"))); // Compile Error for init
 -(instancetype) initWithURL: (NSURL *) theURL;
 
 -(NSDictionary *) postContentForKeys: (NSArray *) theKeys;
+-(NSArray *) topLevelComments;
 @end
