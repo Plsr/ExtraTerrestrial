@@ -20,6 +20,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
 
 @implementation SelfPostTableViewController
 
+// TODO: Add activity indicator until data is loaded, load data elesewhere
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -55,7 +56,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (section == 1) {
+    if (section == 0) {
         return 1;
     } else {
         // Quickfix for last element of array, which only contains the links to the "load more" comments
@@ -66,7 +67,8 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
+    // First section, only has one row for the content
+    if (indexPath.section == 0) {
         ContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:kContentCellIdentifier];
         [self configureContentCell:contentCell atIndexPath:indexPath];
         return contentCell;
@@ -74,6 +76,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
         CommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:kCommentCellIdentifier];
         [self configureCommentCell:commentCell atIndexPath:indexPath];
         return commentCell;
+
     }
     
     
@@ -135,24 +138,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
 
 
 
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    CGRect frame = webView.frame;
-     frame.size.height = 1;
-     webView.frame = frame;
-     CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-     frame.size = fittingSize;
-     webView.frame = frame;
-     webViewHeight = webView.scrollView.contentSize.height;
-     // TODO: Remove Debug
-     NSLog(@"size: %f, %f", fittingSize.width, fittingSize.height);
-    NSLog(@"content height: %f", webView.scrollView.contentSize.height);
-    
 
-    
-    //self.webViewHeightConstraint.constant = webView.scrollView.contentSize.height;
-    //  NSLog(@"THIS IS WHAT IM ACTUALLY INTERETED IN: %@", self.webViewHeightConstraint);
-
-}
 
 
 
@@ -218,8 +204,13 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     }
 }
 
+// Set the title for the header in the given section.
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"test";
+    if (section == 0) {
+        return nil;
+    } else {
+        return @"Comments";
+    }
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

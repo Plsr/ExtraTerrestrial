@@ -12,7 +12,7 @@
 #import "CommentTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
 
-@interface SelfPostTableViewController : UITableViewController <UIWebViewDelegate>
+@interface SelfPostTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *postURLString;
 @property  BOOL isSelf;
