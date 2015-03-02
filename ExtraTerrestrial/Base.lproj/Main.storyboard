@@ -514,6 +514,7 @@
                                     <outlet property="authorLabel" destination="gET-ZT-LcN" id="6tz-ZD-5a2"/>
                                     <outlet property="bodyTextView" destination="yEu-Yg-Ekq" id="qCh-xJ-TCP"/>
                                     <outlet property="scoreLabel" destination="r0R-6C-lkO" id="aek-Ds-E2m"/>
+                                    <outlet property="textViewLeftPadding" destination="zp0-Xq-jUG" id="Pu4-zf-yP2"/>
                                     <outlet property="timeLabel" destination="skU-cD-mIf" id="izm-HS-c9e"/>
                                 </connections>
                             </tableViewCell>

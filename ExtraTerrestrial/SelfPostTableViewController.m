@@ -29,6 +29,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
     commentsData = [NSArray arrayWithArray:[dataModel topLevelComments]];
+    NSLog(@"asd");
     
     
     //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
@@ -61,8 +62,22 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     } else {
         // Quickfix for last element of array, which only contains the links to the "load more" comments
         // TODO: Do somethinge useful with the "more comments" links
+        
         return [commentsData count] - 1;
     }
+}
+
+
+-(NSInteger) testCalculateRows {
+    NSInteger a = 0;
+    
+    for (NSDictionary *thing in commentsData) {
+        if ([[thing objectForKey:@"hasReplies"] boolValue]) {
+            a += [[thing objectForKey:@"replies"] count];
+        }
+    }
+    
+    return a + [commentsData count];
 }
 
 
@@ -110,6 +125,8 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     cell.scoreLabel.text = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"score"] stringValue];
     cell.timeLabel.text = @"4 hours ago"; //TODO: Placeholder, replace!
     cell.bodyTextView.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"body"];
+    cell.textViewLeftPadding.constant = 80;
+    [cell.bodyTextView setNeedsUpdateConstraints];
     
     /*
     // Content

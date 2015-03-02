@@ -42,10 +42,15 @@
         for (NSString *key in keys) {
             
             if ([key isEqualToString:@"replies"]) {
-                if ([curComment objectForKey:key]) {
+                if ([[[curComment objectForKey:@"data"] objectForKey:key] isKindOfClass:[NSDictionary class]]) {
                     BOOL hasReplies = YES;
                     [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasReplies"];
-                    // TODO: add the content of the replies
+                    
+                    // TODO: Dirty quickfix
+                    if (![kind isEqualToString:@"more"]) {
+                        [singleCommentData setObject:[self repliesForComment:[[curComment objectForKey:@"data"] objectForKey:key]] forKey:key];
+                    }
+                    
                 } else {
                     BOOL hasReplies = NO;
                     [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasreplies"];
@@ -62,6 +67,49 @@
         [singleCommentData removeAllObjects];
     }
 
+    return refurbishedComments;
+}
+
+
+-(NSArray *) repliesForComment: (NSDictionary *) parentCommentData {
+    
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", nil];
+    NSDictionary *rawCommentsData = [[parentCommentData  objectForKey:@"data"] objectForKey:@"children"];
+    NSMutableArray *refurbishedComments = [[NSMutableArray alloc] initWithCapacity:[rawCommentsData count]];
+    NSMutableDictionary *singleCommentData = [[NSMutableDictionary alloc] initWithCapacity:[keys count]];
+    NSString *kind;
+    
+    for (NSDictionary *curComment in rawCommentsData) {
+        kind = [curComment objectForKey:@"kind"];
+        for (NSString *key in keys) {
+            
+            if ([key isEqualToString:@"replies"]) {
+                if ([[[curComment objectForKey:@"data"] objectForKey:key] isKindOfClass:[NSDictionary class]]) {
+                    
+                    BOOL hasReplies = YES;
+                    [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasReplies"];
+                    
+                    // TODO: Dirty quickfix
+                    if (![kind isEqualToString:@"more"]) {
+                        [singleCommentData setObject:[self repliesForComment:[[curComment objectForKey:@"data"] objectForKey:key]] forKey:key];
+                    }
+                    
+                } else {
+                    BOOL hasReplies = NO;
+                    [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasreplies"];
+                }
+            } else {
+                if(![kind isEqualToString:@"more"]) {
+                    [singleCommentData setObject:[[curComment objectForKey:@"data"] objectForKey:key] forKey:key];
+                }
+            }
+            
+        }
+        
+        [refurbishedComments addObject:[NSDictionary dictionaryWithDictionary:singleCommentData]];
+        [singleCommentData removeAllObjects];
+    }
+    
     return refurbishedComments;
 }
 
