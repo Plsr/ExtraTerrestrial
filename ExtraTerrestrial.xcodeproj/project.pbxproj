@@ -23,6 +23,7 @@
 		D9884D9E1A7013970083E2CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9D1A7013970083E2CD /* Images.xcassets */; };
 		D9884DA11A7013970083E2CD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9884D9F1A7013970083E2CD /* LaunchScreen.xib */; };
 		D9884DAD1A7013970083E2CD /* ExtraTerrestrialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */; };
+		D9895D0F1AA1DA33006A7290 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9895D0E1AA1DA33006A7290 /* CommentTableViewCell.m */; };
 		D9B2A6791A8F6BCB00B787DE /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */; };
 		D9B2A6A01A94BCB900B787DE /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B2A69B1A94BCA800B787DE /* libMMMarkdown-iOS.a */; };
 		D9B2A6A31A96139100B787DE /* LinkPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B2A6A21A96139100B787DE /* LinkPostViewController.m */; };
@@ -98,6 +99,8 @@
 		D9884DA61A7013970083E2CD /* ExtraTerrestrialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtraTerrestrialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9884DAB1A7013970083E2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9884DAC1A7013970083E2CD /* ExtraTerrestrialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtraTerrestrialTests.m; sourceTree = "<group>"; };
+		D9895D0D1AA1DA33006A7290 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		D9895D0E1AA1DA33006A7290 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTableViewCell.h; sourceTree = "<group>"; };
 		D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTableViewCell.m; sourceTree = "<group>"; };
 		D9B2A6911A94BCA800B787DE /* MMMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMMarkdown.xcodeproj; path = MMMarkdown/MMMarkdown.xcodeproj; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 			children = (
 				D9B2A6771A8F6BCB00B787DE /* ContentTableViewCell.h */,
 				D9B2A6781A8F6BCB00B787DE /* ContentTableViewCell.m */,
+				D9895D0D1AA1DA33006A7290 /* CommentTableViewCell.h */,
+				D9895D0E1AA1DA33006A7290 /* CommentTableViewCell.m */,
 				D9684EB71A8E1B6E00845C40 /* SelfPostTableViewController.h */,
 				D9684EB81A8E1B6E00845C40 /* SelfPostTableViewController.m */,
 			);
@@ -423,6 +428,7 @@
 				D96EA7981A9CDC14003B833C /* MenuTableViewCell.m in Sources */,
 				D9684EB31A8D1BDB00845C40 /* SinglePostDataModel.m in Sources */,
 				D91328B01A728E5A004FC6AE /* SubredditDataModel.m in Sources */,
+				D9895D0F1AA1DA33006A7290 /* CommentTableViewCell.m in Sources */,
 				D95CE1461A8A3ED2000848DA /* SubredditTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

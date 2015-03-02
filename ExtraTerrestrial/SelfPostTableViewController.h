@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SinglePostDataModel.h"
 #import "ContentTableViewCell.h"
+#import "CommentTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
 
-@interface SelfPostTableViewController : UITableViewController
+@interface SelfPostTableViewController : UITableViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *postURLString;
 @property  BOOL isSelf;
