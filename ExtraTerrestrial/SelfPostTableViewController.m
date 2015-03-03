@@ -238,9 +238,36 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     if (section == 0) {
         return nil;
     } else {
-        return @"Comments";
+        return [NSString stringWithFormat:@"Comments • %lu", (unsigned long)[commentsData count]];
     }
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    } else {
+        return 40.0f;
+    }
+}
+
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(20, 10, 300, 20);
+    myLabel.font = [UIFont boldSystemFontOfSize:16];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
+}
+
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
