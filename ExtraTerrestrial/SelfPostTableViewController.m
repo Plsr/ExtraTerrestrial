@@ -91,7 +91,7 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
         return contentCell;
     } else {
         if ([[[commentsData objectAtIndex:indexPath.row] objectForKey:@"isMoreIndicator"] boolValue]) {
-            //TODO: Fit width to current level of nesting
+            //TODO: Own function
             ContinueTableViewCell *continueCell = [tableView dequeueReusableCellWithIdentifier:kContinueCellIdentifier];
             NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
             continueCell.continueLabelLeftPadding.constant = 20 * level;
@@ -112,6 +112,8 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     // Meta
     cell.titleLabel.text = [self.postData objectForKey:@"title"];
     cell.authorLabel.text = [self.postData objectForKey:@"author"];
+    cell.scoreLabel.text = [[self.postData objectForKey:@"score"] stringValue];
+    cell.subredditLabel.text = [self.postData objectForKey:@"subreddit"];
     
     // Content
     if ([[self.postData objectForKey:@"selftext"] length]) {
@@ -233,6 +235,8 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     }
 }
 
+#pragma mark - Section headers
+
 // Set the title for the header in the given section.
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
@@ -251,7 +255,7 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 }
 
 
-
+//TODO: Clean up
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UILabel *myLabel = [[UILabel alloc] init];
