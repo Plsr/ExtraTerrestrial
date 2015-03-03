@@ -21,16 +21,13 @@
 }
 
 
-/*
-// TODO: Should be deprecated
--(NSDictionary *)postContentForKeys:(NSArray *)theKeys {
-    NSDictionary *postData = [[[self.apiCallReturns objectAtIndex:0] objectForKey:@"data"] objectForKey:@"children"];
-    // Someone at Apple already wrote the method I need, how convenient.
-    return [postData dictionaryWithValuesForKeys:theKeys];
-}
- */
 
+// TODO: Rename & tidy up
 -(NSArray *)topLevelComments {
+    
+    return [NSMutableArray arrayWithArray:[self firstLevelCommentsForComment:self.apiCallReturns withLevel:1]];
+    
+    /*
     NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", nil];
     NSDictionary *rawCommentsData = [[self.apiCallReturns  objectForKey:@"data"] objectForKey:@"children"];
     NSMutableArray *refurbishedComments = [[NSMutableArray alloc] initWithCapacity:[rawCommentsData count]];
@@ -76,10 +73,11 @@
     
 
     return refurbishedComments;
+     */
 }
 
 
-
+// TODO: Rename
 -(NSArray *)firstLevelCommentsForComment: (NSDictionary *) parentComment withLevel: (NSInteger) level{
     NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", nil];
     NSDictionary *rawCommentsData = [[parentComment  objectForKey:@"data"] objectForKey:@"children"];
@@ -89,7 +87,7 @@
     NSMutableArray * tempCom;
     
     for (NSDictionary *curComment in rawCommentsData) {
-        kind = [curComment objectForKey:@"kind"];
+        kind = [NSString stringWithString:[curComment objectForKey:@"kind"]];
         for (NSString *key in keys) {
             
             if ([key isEqualToString:@"replies"]) {
@@ -99,10 +97,8 @@
                     [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasReplies"];
                     [singleCommentData setObject:[NSNumber numberWithInt:level] forKey:@"commentLevel"];
                     
-                     // TODO: Dirty quickfix
-                     if (![kind isEqualToString:@"more"]) {
-                         tempCom = [NSMutableArray arrayWithArray:[self firstLevelCommentsForComment:[[curComment objectForKey:@"data"] objectForKey:key] withLevel:++level]];
-                     }
+                    tempCom = [NSMutableArray arrayWithArray:[self firstLevelCommentsForComment:[[curComment objectForKey:@"data"] objectForKey:key] withLevel:++level]];
+                     
                     
                     
                 } else {
@@ -111,8 +107,11 @@
                     [singleCommentData setObject:[NSNumber numberWithInt:level] forKey:@"commentLevel"];
                 }
             } else {
-                if(![kind isEqualToString:@"more"]) {
+                if([kind isEqualToString:@"t1"]) {
                     [singleCommentData setObject:[[curComment objectForKey:@"data"] objectForKey:key] forKey:key];
+                } else {
+                    BOOL isMoreIndicator = YES;
+                    [singleCommentData setObject:[NSNumber numberWithBool:isMoreIndicator] forKey:@"isMoreIndicator"];
                 }
             }
             
@@ -128,6 +127,8 @@
 
     
 }
+
+
 
 
 

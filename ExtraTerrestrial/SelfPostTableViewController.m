@@ -29,7 +29,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
     commentsData = [NSArray arrayWithArray:[dataModel topLevelComments]];
-    NSLog(@"%@", commentsData);
+    //NSLog(@"%@", commentsData);
     
     
     //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
