@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D91328B01A728E5A004FC6AE /* SubredditDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D91328AF1A728E5A004FC6AE /* SubredditDataModel.m */; };
 		D92D02BA1AA6092A0019EEE5 /* ContinueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D02B91AA6092A0019EEE5 /* ContinueTableViewCell.m */; };
+		D92D02C11AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D02C01AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.m */; };
 		D95CE1461A8A3ED2000848DA /* SubredditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */; };
 		D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EA81A8B603C00845C40 /* SubredditTableViewCell.m */; };
 		D9684EAC1A8B9E6800845C40 /* SubredditTableViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9684EAB1A8B9E6800845C40 /* SubredditTableViewImageCell.m */; };
@@ -73,6 +74,8 @@
 		D91328AF1A728E5A004FC6AE /* SubredditDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubredditDataModel.m; sourceTree = "<group>"; };
 		D92D02B81AA6092A0019EEE5 /* ContinueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueTableViewCell.h; sourceTree = "<group>"; };
 		D92D02B91AA6092A0019EEE5 /* ContinueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueTableViewCell.m; sourceTree = "<group>"; };
+		D92D02BF1AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		D92D02C01AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 		D95CE1441A8A3ED2000848DA /* SubredditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubredditTableViewController.h; sourceTree = "<group>"; };
 		D95CE1451A8A3ED2000848DA /* SubredditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubredditTableViewController.m; sourceTree = "<group>"; };
 		D9684EA71A8B603C00845C40 /* SubredditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubredditTableViewCell.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 		D9884D901A7013970083E2CD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D92D02BF1AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.h */,
+				D92D02C01AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.m */,
 				D9884D911A7013970083E2CD /* Info.plist */,
 				D9884D921A7013970083E2CD /* main.m */,
 			);
@@ -424,6 +429,7 @@
 				D9684EB91A8E1B6E00845C40 /* SelfPostTableViewController.m in Sources */,
 				D9884D961A7013970083E2CD /* AppDelegate.m in Sources */,
 				D9684EA91A8B603C00845C40 /* SubredditTableViewCell.m in Sources */,
+				D92D02C11AA63F8B0019EEE5 /* TTTTimeIntervalFormatter.m in Sources */,
 				D9884D931A7013970083E2CD /* main.m in Sources */,
 				D96EA7951A9CCF81003B833C /* RedditAPICall.m in Sources */,
 				D96EA7921A9CC29E003B833C /* MenuDataModel.m in Sources */,

@@ -12,6 +12,7 @@
 #import "CommentTableViewCell.h"
 #import "ContinueTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
+#import "TTTTimeIntervalFormatter.h"
 
 @interface SelfPostTableViewController : UITableViewController
 

@@ -69,18 +69,6 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 }
 
 
-//TODO: Delete
--(NSInteger) testCalculateRows {
-    NSInteger a = 0;
-    
-    for (NSDictionary *thing in commentsData) {
-        if ([[thing objectForKey:@"hasReplies"] boolValue]) {
-            a += [[thing objectForKey:@"replies"] count];
-        }
-    }
-    
-    return a + [commentsData count];
-}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -114,6 +102,7 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     cell.authorLabel.text = [self.postData objectForKey:@"author"];
     cell.scoreLabel.text = [[self.postData objectForKey:@"score"] stringValue];
     cell.subredditLabel.text = [self.postData objectForKey:@"subreddit"];
+    cell.timeLabel.text = [self timeSincePosted:[[self.postData objectForKey:@"created_utc"] doubleValue]];
     
     // Content
     if ([[self.postData objectForKey:@"selftext"] length]) {
@@ -126,6 +115,8 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
         // TODO: Not working clean, extra cell?
         [cell.contentTextView removeFromSuperview];
     }
+    
+    
     
     // Update constraints after elements are filled with content.
     [cell setNeedsUpdateConstraints];
@@ -203,6 +194,9 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 }
 
 
+
+#pragma mark - Helper methods for data source
+
 // TODO: Move to Model
 -(NSURL *) urlFromPermalink: (NSString *) permalink {
     NSString *redditURL = @"http://reddit.com";
@@ -234,6 +228,19 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
         return @"error";
     }
 }
+
+
+-(NSString *) timeSincePosted: (double) timestamp {
+    NSTimeInterval _interval = timestamp;
+    NSDate *postDate = [NSDate dateWithTimeIntervalSince1970:_interval];
+    
+    NSTimeInterval secondsPassed = [postDate timeIntervalSinceNow];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    NSString *result = [timeIntervalFormatter stringForTimeInterval:secondsPassed];
+   
+    return result;
+}
+
 
 #pragma mark - Section headers
 

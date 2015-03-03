@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Test-->
+        <!--subreddit-->
         <scene sceneID="QOr-2P-GgH">
             <objects>
                 <tableViewController id="9kv-k1-wRX" customClass="SubredditTableViewController" sceneMemberID="viewController">
@@ -346,7 +346,7 @@
                             <outlet property="delegate" destination="9kv-k1-wRX" id="8wl-Oo-hCg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Test" id="O1u-J4-lUh"/>
+                    <navigationItem key="navigationItem" title="subreddit" id="O1u-J4-lUh"/>
                     <connections>
                         <outlet property="FrontPageTableView" destination="b8s-hz-GmB" id="gLe-ru-Peq"/>
                         <outlet property="view" destination="b8s-hz-GmB" id="FTv-qS-SoP"/>
@@ -657,6 +657,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rRl-dJ-Mlw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.49803921568627452" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="aQ3-pM-zim" kind="relationship" relationship="rootViewController" id="icD-ea-Qfb"/>

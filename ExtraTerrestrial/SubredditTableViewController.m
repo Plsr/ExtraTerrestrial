@@ -36,7 +36,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     self.tableView.estimatedRowHeight = 44.0; // random number
     
     self.apiCall = [[SubredditDataModel alloc] initWithURL:self.subredditURL];
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", @"url", nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", @"url", @"created_utc", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
     
     self.navigationItem.title = self.subredditTitle;
