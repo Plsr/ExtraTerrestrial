@@ -110,6 +110,8 @@
                 if([kind isEqualToString:@"t1"]) {
                     [singleCommentData setObject:[[curComment objectForKey:@"data"] objectForKey:key] forKey:key];
                 } else {
+                    // TODO: Called for every key, fix
+                    // TODO: Get links of the children for later expanding
                     BOOL isMoreIndicator = YES;
                     [singleCommentData setObject:[NSNumber numberWithBool:isMoreIndicator] forKey:@"isMoreIndicator"];
                 }
@@ -132,7 +134,7 @@
 
 
 
-
+// TODO: Delete
 -(NSArray *) repliesForComment: (NSDictionary *) parentCommentData {
     
     NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", nil];

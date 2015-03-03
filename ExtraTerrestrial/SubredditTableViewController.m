@@ -41,6 +41,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     
     self.navigationItem.title = self.subredditTitle;
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    
     // Initialize table data
     
     
