@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *bodyWebView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewLeftPadding;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *authorLabelLeftPadding;
 
 
 

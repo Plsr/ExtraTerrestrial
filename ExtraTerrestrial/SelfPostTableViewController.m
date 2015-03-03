@@ -29,7 +29,7 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
     commentsData = [NSArray arrayWithArray:[dataModel topLevelComments]];
-    NSLog(@"asd");
+    NSLog(@"%@", commentsData);
     
     
     //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
@@ -125,7 +125,9 @@ static NSString * const kCommentCellIdentifier = @"commentCell";
     cell.scoreLabel.text = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"score"] stringValue];
     cell.timeLabel.text = @"4 hours ago"; //TODO: Placeholder, replace!
     cell.bodyTextView.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"body"];
-    cell.textViewLeftPadding.constant = 80;
+    NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
+    cell.textViewLeftPadding.constant = 20 * level;
+    cell.authorLabelLeftPadding.constant = 20 * level;
     [cell.bodyTextView setNeedsUpdateConstraints];
     
     /*
