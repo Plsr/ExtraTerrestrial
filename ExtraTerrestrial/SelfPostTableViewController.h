@@ -10,6 +10,7 @@
 #import "SinglePostDataModel.h"
 #import "ContentTableViewCell.h"
 #import "CommentTableViewCell.h"
+#import "ContinueTableViewCell.h"
 #import <MMMarkdown/MMMarkdown.h>
 
 @interface SelfPostTableViewController : UITableViewController
@@ -18,5 +19,6 @@
 @property  BOOL isSelf;
 
 @property (strong, nonatomic) NSDictionary *postData;
+
 
 @end

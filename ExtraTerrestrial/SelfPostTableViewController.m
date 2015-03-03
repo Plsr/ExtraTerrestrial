@@ -10,7 +10,7 @@
 
 static NSString * const kContentCellIdentifier = @"contentCell";
 static NSString * const kCommentCellIdentifier = @"commentCell";
-static NSString * const kMoreCellIdentifier = @"moreCell";
+static NSString * const kContinueCellIdentifier = @"continueCell";
 
 @interface SelfPostTableViewController (){
     NSArray *commentsData;
@@ -92,9 +92,10 @@ static NSString * const kMoreCellIdentifier = @"moreCell";
     } else {
         if ([[[commentsData objectAtIndex:indexPath.row] objectForKey:@"isMoreIndicator"] boolValue]) {
             //TODO: Fit width to current level of nesting
-            UITableViewCell *moreCell = [tableView dequeueReusableCellWithIdentifier:kMoreCellIdentifier];
-            moreCell.backgroundColor = [UIColor colorWithRed:0 green:(150.0/255.0) blue:(140.0/255.0) alpha:1];
-            return moreCell;
+            ContinueTableViewCell *continueCell = [tableView dequeueReusableCellWithIdentifier:kContinueCellIdentifier];
+            NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
+            continueCell.continueLabelLeftPadding.constant = 20 * level;
+            return continueCell;
         } else {
             CommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:kCommentCellIdentifier];
             [self configureCommentCell:commentCell atIndexPath:indexPath];

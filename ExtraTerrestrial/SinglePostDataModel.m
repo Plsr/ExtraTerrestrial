@@ -95,16 +95,13 @@
                     
                     BOOL hasReplies = YES;
                     [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasReplies"];
-                    [singleCommentData setObject:[NSNumber numberWithInt:level] forKey:@"commentLevel"];
-                    
+                    [singleCommentData setObject:[NSNumber numberWithInteger:level] forKey:@"commentLevel"];
                     tempCom = [NSMutableArray arrayWithArray:[self firstLevelCommentsForComment:[[curComment objectForKey:@"data"] objectForKey:key] withLevel:++level]];
-                     
-                    
                     
                 } else {
                     BOOL hasReplies = NO;
                     [singleCommentData setObject:[NSNumber numberWithBool:hasReplies] forKey:@"hasreplies"];
-                    [singleCommentData setObject:[NSNumber numberWithInt:level] forKey:@"commentLevel"];
+                    [singleCommentData setObject:[NSNumber numberWithInteger:level] forKey:@"commentLevel"];
                 }
             } else {
                 if([kind isEqualToString:@"t1"]) {
