@@ -79,7 +79,7 @@
 
 // TODO: Rename
 -(NSArray *)firstLevelCommentsForComment: (NSDictionary *) parentComment withLevel: (NSInteger) level{
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"body", @"author", @"created", @"score", @"replies", @"created_utc", nil];
     NSDictionary *rawCommentsData = [[parentComment  objectForKey:@"data"] objectForKey:@"children"];
     NSMutableArray *refurbishedComments = [[NSMutableArray alloc] initWithCapacity:[rawCommentsData count]];
     NSMutableDictionary *singleCommentData = [[NSMutableDictionary alloc] initWithCapacity:[keys count]];

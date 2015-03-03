@@ -126,7 +126,7 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 -(void)configureCommentCell: (CommentTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     cell.authorLabel.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"author"];
     cell.scoreLabel.text = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"score"] stringValue];
-    cell.timeLabel.text = @"4 hours ago"; //TODO: Placeholder, replace!
+    cell.timeLabel.text = [self timeSincePosted:[[[commentsData objectAtIndex:indexPath.row] objectForKey:@"created_utc"] doubleValue]];
     cell.bodyTextView.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"body"];
     NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
     cell.textViewLeftPadding.constant = 20 * level;
