@@ -8,13 +8,13 @@
 
 #import "SelfPostTableViewController.h"
 
+// Identifiers for prototype cells
 static NSString * const kContentCellIdentifier = @"contentCell";
 static NSString * const kCommentCellIdentifier = @"commentCell";
 static NSString * const kContinueCellIdentifier = @"continueCell";
 
 @interface SelfPostTableViewController (){
     NSArray *commentsData;
-    CGFloat webViewHeight;
 }
 
 @end
@@ -24,23 +24,19 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 // TODO: Add activity indicator until data is loaded, load data elesewhere
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set estimated row height, overridden when cells now their exact size
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 144.0;
+    
+    // Load comment data
+    // Data of the post itself is set by SubredditTableViewController
     self.postURLString = [self.postData objectForKey:@"permalink"];
     NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
     commentsData = [NSArray arrayWithArray:[dataModel topLevelComments]];
-    //NSLog(@"%@", commentsData);
-    
-    
-    //SinglePostAPICall *apiCall = [[SinglePostAPICall alloc] initWithURL:singlePostURL];
-    //NSLog(@"%@", apiCall.apiCallReturns);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -49,142 +45,137 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 
 #pragma mark - Table view data source
 
+
+/*
+ *  Number of sections in the table view.
+ *  In this case we got two: One section with the post data
+ *  and one section with the comments.
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 2;
 }
 
+
+/*
+ *  Set the number of rows in each section.
+ *  For the first section this is only one rwo - the content.
+ *  The second view contains a dynamic number of row given by the number of comments.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
     if (section == 0) {
         return 1;
     } else {
         // Quickfix for last element of array, which only contains the links to the "load more" comments
         // TODO: Do somethinge useful with the "more comments" links
-        
         return [commentsData count] - 1;
     }
 }
 
 
-
-
+/*
+ *  Decide which cell should be set for the current indexPath.
+ *  For the SelfPostTableView we have three different kinds of cells:
+ *      1. ContentTableViewCell, only configured once in the entire view,
+ *         contains the content of the post.
+ *      2. CommentTableViewCell, cell for one single comment, is indented by
+ *         level.
+ *      3. ContinueTableViewCell, indicates that the current thread was not fully
+ *         loaded, is indented by level.
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // First section, only has one row for the content
     if (indexPath.section == 0) {
+        // First section only contains the content cell
         ContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:kContentCellIdentifier];
         [self configureContentCell:contentCell atIndexPath:indexPath];
         return contentCell;
     } else {
         if ([[[commentsData objectAtIndex:indexPath.row] objectForKey:@"isMoreIndicator"] boolValue]) {
-            //TODO: Own function
+            // If cell is a "more indicator", set a continue cell
             ContinueTableViewCell *continueCell = [tableView dequeueReusableCellWithIdentifier:kContinueCellIdentifier];
-            NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
-            continueCell.continueLabelLeftPadding.constant = 20 * level;
+            [self configerContinueCell:continueCell atIndexPath:indexPath];
             return continueCell;
         } else {
+            // Regular comment cell
             CommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:kCommentCellIdentifier];
             [self configureCommentCell:commentCell atIndexPath:indexPath];
             return commentCell;
         }
-
     }
-    
-    
 }
 
-//TODO: do I need the IndexPath here?
+
+/**
+ *  Configures a content cell.
+ *
+ *  @param cell         The cell to be configured
+ *  @param indexPath    The current indexPath
+ *
+ */
 - (void)configureContentCell:(ContentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    // Meta
+    // Set the labels
     cell.titleLabel.text = [self.postData objectForKey:@"title"];
     cell.authorLabel.text = [self.postData objectForKey:@"author"];
     cell.scoreLabel.text = [[self.postData objectForKey:@"score"] stringValue];
     cell.subredditLabel.text = [self.postData objectForKey:@"subreddit"];
     cell.timeLabel.text = [self timeSincePosted:[[self.postData objectForKey:@"created_utc"] doubleValue]];
     
-    // Content
+    // Set the content
+    // This whole thing is kind of slow
     if ([[self.postData objectForKey:@"selftext"] length]) {
-        NSString *htmlSelftext = [self createStringForWebView:[self.postData objectForKey:@"selftext"]];
+        NSString *htmlSelftext = [self createHTMLStringFromMarkdown:[self.postData objectForKey:@"selftext"]];
         NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlSelftext dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         cell.contentTextView.attributedText = attributedString;
         [cell.contentTextView setFont:[UIFont systemFontOfSize:17]];
     } else {
         // No body content, remove UITextView.
-        // TODO: Not working clean, extra cell?
+        // TODO: Collapses the whole cell
         [cell.contentTextView removeFromSuperview];
     }
-    
-    
     
     // Update constraints after elements are filled with content.
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
 }
 
+
+/**
+ *  Configures a comment cell.
+ *
+ *  @param cell         The cell to be configured
+ *  @param indexPath    The current indexPath
+ *
+ */
 -(void)configureCommentCell: (CommentTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    // Fill the cell with its content
     cell.authorLabel.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"author"];
     cell.scoreLabel.text = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"score"] stringValue];
     cell.timeLabel.text = [self timeSincePosted:[[[commentsData objectAtIndex:indexPath.row] objectForKey:@"created_utc"] doubleValue]];
     cell.bodyTextView.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"body"];
+    
+    // Decide how deep indented the cell should be
     NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
     cell.textViewLeftPadding.constant = 20 * level;
     cell.authorLabelLeftPadding.constant = 20 * level;
+    
+    // Update constraints after content is inserted
     [cell.bodyTextView setNeedsUpdateConstraints];
-    
-    /*
-    // Content
-    //create the string
-    NSString *sysFontName = @"Helvetica Neue";
-    NSString *sysFontSize = @"15pt";
-    NSMutableString *html = [NSMutableString stringWithFormat: @"<html><head><title></title></head><body style=\"background:transparent;font-family:%@;font-size:%@; \">",sysFontName, sysFontSize];
-    //continue building the string
-    
-    //NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[[[commentsData objectAtIndex:indexPath.row] objectForKey:@"body_html"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    NSString *markdownString = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"body"];
-    [html appendString:[MMMarkdown HTMLStringWithMarkdown:markdownString error:nil]];
-    [html appendString:@"</body></html>"];
-    
-    
-    //pass the string to the webview
-    //sizingCell.bodyWebView.delegate = sizingCell;
-    cell.bodyWebView.delegate = self;
-    [cell.bodyWebView loadHTMLString:[html description] baseURL:nil];
-    cell.bodyWebView.scrollView.scrollEnabled = NO;
-    */
-    
     [cell updateConstraints];
     [cell layoutSubviews];
 }
 
 
-
-
-
-
-
-/*
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static CommentTableViewCell *sizingCell = nil;
-    //  GCD, see https://developer.apple.com/library/mac/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html#//apple_ref/c/func/dispatch_once
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        //  This part is only ran once
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"commentCell"];
-    });
-    sizingCell.authorLabel.text = [[commentsData objectAtIndex:indexPath.row] objectForKey:@"author"];
-    sizingCell.scoreLabel.text = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"score"] stringValue];
-    sizingCell.timeLabel.text = @"4 hours ago"; //TODO: Placeholder, replace!
-    
-    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    CGFloat height = (size.height) + webViewHeight;
-    NSLog(@"Cell height: %f", height);
-    return height + 1.0f;
-    
-} */
-
+/**
+ *  Configures a continue cell.
+ *
+ *  @param cell         The cell to be configured
+ *  @param indexPath    The current indexPath
+ *
+ */
+-(void) configerContinueCell: (ContinueTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    // Content is always identical, only need to set indentation here.
+    NSInteger level = [[[commentsData objectAtIndex:indexPath.row] objectForKey:@"commentLevel"] integerValue];
+    cell.continueLabelLeftPadding.constant = 20 * level;
+}
 
 
 // None of the Table Cells are selectable
@@ -194,10 +185,18 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 }
 
 
-
 #pragma mark - Helper methods for data source
 
-// TODO: Move to Model
+/**
+ *  Constructs a valid URL from the permalink provided by the reddit api
+ *
+ *  @param permalink Permalink provided by the reddit api
+ *
+ *  @return A NSURL ready for an api call.
+ *
+ *  @note ".json" is already appended to the returned NSURL
+ *
+ */
 -(NSURL *) urlFromPermalink: (NSString *) permalink {
     NSString *redditURL = @"http://reddit.com";
     NSString *json = @".json";
@@ -206,35 +205,43 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     return validPermalinkURL;
 }
 
-// TODO: rename function
-// TODO: Move to Model
--(NSString *) createStringForWebView: (NSString *) body {
+
+/**
+ *  Returns an NSString with html-tags from a given String in markdown format.
+ *
+ *  @param markdownFromAPI The markdown String provided by the reddit API
+ *
+ *  @return An NSString with html-tags
+ *
+ */
+-(NSString *) createHTMLStringFromMarkdown: (NSString *) markdownFromAPI {
     NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];
     NSError *error;
-    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:body error:&error];
+    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdownFromAPI error:&error];
     [html appendString:htmlString];
     [html appendString:@"</body></html>"];
-    //NSLog(@"%@", [html description]);
     return [html description];
 }
 
--(NSString *) decodeMarkdownForString: (NSString *) string {
-    NSError *error;
-    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:string error:&error];
-    
-    if (!error) {
-        return htmlString;
-    } else {
-        return @"error";
-    }
-}
 
-
+/**
+ *  Returns an NSString with a reading description of when a timestamp was created.
+ *
+ *  @param timestamp A unix-timestamp
+ *
+ *  @return An NSSTring whith a reading description of when the timestamp was created.
+ *
+ *  @see For more information see <a href="https://github.com/mattt/FormatterKit">FormatterKit</a>
+ *
+ */
 -(NSString *) timeSincePosted: (double) timestamp {
+    // Transform timestamp to NSDate and retrieve the seconds passed since creation date
     NSTimeInterval _interval = timestamp;
     NSDate *postDate = [NSDate dateWithTimeIntervalSince1970:_interval];
-    
     NSTimeInterval secondsPassed = [postDate timeIntervalSinceNow];
+    
+    // Using FormatterKit to construct reading descriptions (e.g. "4 hours ago")
+    // God bless Mattt Thompson
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     NSString *result = [timeIntervalFormatter stringForTimeInterval:secondsPassed];
    
@@ -247,12 +254,20 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 // Set the title for the header in the given section.
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
+        // Content Section does not have a header
         return nil;
     } else {
+        // Comment section has a header with the count of the comments in it
         return [NSString stringWithFormat:@"Comments • %lu", (unsigned long)[commentsData count]];
     }
 }
 
+
+/*
+ *  Custom height for headers.
+ *  Content sections header has a height of 0 and therefor is not visible.
+ *
+ */
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return 0;
@@ -262,32 +277,25 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
 }
 
 
-//TODO: Clean up
+/*
+ *  Creates the custom header for the sections
+ *  TODO: Only construct one for section 1
+ */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    // Custom Label
+    UILabel *headerLabel = [[UILabel alloc] init];
+    headerLabel.frame = CGRectMake(20, 10, 300, 20);
+    headerLabel.font = [UIFont boldSystemFontOfSize:16];
+    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     
-    UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.frame = CGRectMake(20, 10, 300, 20);
-    myLabel.font = [UIFont boldSystemFontOfSize:16];
-    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    
+    // Add label to header view
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1];
-    [headerView addSubview:myLabel];
+    [headerView addSubview:headerLabel];
     
     return headerView;
 }
 
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.
