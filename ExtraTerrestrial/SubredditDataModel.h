@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSDictionary *payload;
 
 
-
+-(instancetype) init __attribute__((unavailable("APICall must always be initialized with an URL"))); // Compile Error for init
 -(instancetype) initWithURL: (NSURL *) theURL;
 -(NSArray *) contentOfChildrenForKeys: (NSArray *) theKeys;
 

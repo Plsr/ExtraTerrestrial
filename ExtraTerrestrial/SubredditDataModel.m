@@ -19,6 +19,18 @@ static NSString * const kAfterStr = @"after";
 
 @implementation SubredditDataModel
 
+
+/**
+ *  Creates a SubredditDataModel object with the contents of an API-Call for an URL
+ *
+ *  @param theURL The URL to use for the request
+ *
+ *  @return SubredditDataModel Object with an NSDictionary containing the returns of the request
+ *
+ *  @note theURL must be of the format http://www.reddit.com/r/subreddit.json for the function to work properly
+ *
+ */
+
 -(instancetype)initWithURL:(NSURL *)theURL {
     self = [super init];
     if(self) {
@@ -31,11 +43,16 @@ static NSString * const kAfterStr = @"after";
     return self;
 }
 
-/*
+/**
  *  Returns an Array with Dictionaries for all given keys (For 25 Children that will be
- *  Array[24] with an NSDictionary of the demanded keys and vlaues at every position).
+ *  Array[24] with an NSDictionary containing the demanded keys and vlaues at every position).
  *  For non-valid values (e.g. thumbnail if there istn't one), the keys and values are simply skipped.
  *  The submitted keys are the same in the returned Dicitionaries.
+ *
+ *  @param theKeys  Array with the needed keys
+ *
+ *  @return NSArray with a Dictionary containing the wanted keys at every popsition.
+ *
  */
 -(NSArray *)contentOfChildrenForKeys:(NSArray *)theKeys {
     NSMutableDictionary *dataSet = [[NSMutableDictionary alloc] initWithCapacity:[theKeys count]];
@@ -61,6 +78,7 @@ static NSString * const kAfterStr = @"after";
             }
         }
         
+        // Add the current dictiionary to the array, then clean it
         [preparedContent addObject:[NSDictionary dictionaryWithDictionary:dataSet]];
         [dataSet removeAllObjects];
     }
@@ -68,17 +86,32 @@ static NSString * const kAfterStr = @"after";
     return preparedContent;
 }
 
-/*
- *  Helper method to make shorter method calls possible.
+
+/** 
+ *  Contructs an UIImage from a given URL.
+ *  This method only exists to make some code a bit shorter.
+ *
+ *  @param url The url from which the UIImage should be constructed.
+ *
+ *  @return The UIImage.
+ *
+ *  @note The url is not tested to valid in this function, only use URLs that are known to be valid.
+ *
  */
 -(UIImage *) imageFromURL: (NSURL *) url {
     return [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
 }
 
 
-/*
- *  If the URL was malformed it will be nil.
- *  In addition, check for scheme and host (see http://stackoverflow.com/a/5081447/4181679 )
+/**
+ *  Checks wether the URL is malformed (= does not lead to a proper thumbnail)
+ *  In addition, checks for scheme and host
+ *  
+ *  @param url The URL to be checked
+ *
+ *  @return YES if the URL is valid, NO if it was malformed
+ *
+ *  @see http://stackoverflow.com/a/5081447/4181679
  */
 -(BOOL) thumbnailURLIsValid: (NSURL *) url {
     if(url && url.scheme && url.host) {

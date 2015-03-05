@@ -10,6 +10,17 @@
 
 @implementation MenuDataModel
 
+
+/**
+ *  Creates a MenuDataModel object with the contents of an API-Call for an URL
+ *
+ *  @param theURL The URL to use for the request
+ *
+ *  @return MenuDataModel Object with an NSDictionary containing the returns of the request
+ *
+ *  @note theURL must be of the format http://www.reddit.com/reddits.json for the function to work properly
+ *
+ */
 -(instancetype)initWithURL:(NSURL *)theURL {
     self = [super init];
     if(self) {
@@ -22,6 +33,13 @@
 }
 
 
+/**
+ *  Creates an Array with the names of the subreddits that are popular right now
+ *
+ *  @return Array with the names of the subreddits
+ *
+ *  @note   "front" is alwazs added as first element of the array by this function, because it's not provided by the API
+ */
 -(NSArray *) subredditNames {
     NSArray* names = [[[[self.apiCallReturns valueForKey:@"data"] valueForKey:@"children"] valueForKey:@"data"] valueForKey:@"display_name"];
     NSMutableArray *returns = [NSMutableArray arrayWithCapacity:([names count ]) +1 ];

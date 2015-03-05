@@ -34,7 +34,7 @@ static NSString * const kContinueCellIdentifier = @"continueCell";
     self.postURLString = [self.postData objectForKey:@"permalink"];
     NSURL *singlePostURL = [self urlFromPermalink:self.postURLString];
     SinglePostDataModel *dataModel = [[SinglePostDataModel alloc] initWithURL:singlePostURL];
-    commentsData = [NSArray arrayWithArray:[dataModel topLevelComments]];
+    commentsData = [NSArray arrayWithArray:[dataModel commentsFromDataModel]];
 }
 
 

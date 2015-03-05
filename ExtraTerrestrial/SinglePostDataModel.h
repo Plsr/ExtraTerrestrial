@@ -16,5 +16,6 @@
 -(instancetype) init __attribute__((unavailable("APICall must always be initialized with an URL"))); // Compile Error for init
 -(instancetype) initWithURL: (NSURL *) theURL;
 
--(NSArray *) topLevelComments;
+-(NSArray *) commentsFromDataModel;
+
 @end
