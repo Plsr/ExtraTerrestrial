@@ -18,15 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Data Model
     MenuDataModel *dataModel = [[MenuDataModel alloc]initWithURL:[NSURL URLWithString:@"http://reddit.com/reddits.json"]];
     menuContents = [dataModel subredditNames];
+    
     self.navigationItem.title = @"subreddits";
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,18 +33,30 @@
 
 #pragma mark - Table view data source
 
+/*
+ *  For now, there is only one section in the master view controller.
+ *  Note sure if settings etc will have a seperate section later.
+ *
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
+/*
+ *  Rows in the single section equals the number of items to be dsiplayed.
+ *
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [menuContents count];
 }
 
+/*
+ *  Setting the content of each cell. Since we only have one label per cell,
+ *  it's pretty straight forward.
+ *
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MenuTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"subredditCell"];
@@ -56,17 +65,6 @@
     
     
 }
-
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -113,8 +111,9 @@
     if([[segue identifier]isEqualToString:@"showSubredditOverview"]) {
         UINavigationController *destinationNavController = segue.destinationViewController;
         NSInteger currentIndex = [[self.tableView indexPathForSelectedRow] row];
-        NSLog(@"%@", [menuContents objectAtIndex:currentIndex]);
         SubredditTableViewController *subredditViewController = destinationNavController.viewControllers[0];
+        
+        // Send data to destination view controller
         subredditViewController.subredditTitle = [menuContents objectAtIndex:currentIndex];
         subredditViewController.subredditURL = [self constructURLFromTitle:[menuContents objectAtIndex:currentIndex]];
         subredditViewController.setFromSegue = YES;
@@ -122,8 +121,16 @@
 }
 
 
+/**
+ *  Constructs a valid NSURL for an API-Call from the ttitle of a subreddit.
+ *
+ *  @param title The title of the subreddit as NSString
+ *
+ *  @return valid NSURL to make an API-Call with.
+ *
+ */
 -(NSURL *) constructURLFromTitle: (NSString *) title {
-    // Front page needs to be constructed seperately since it's no API Item
+    // Front page needs to be constructed seperately since it's no API item
     if([title isEqualToString:@"front"]) {
         return [NSURL URLWithString:@"http://reddit.com/.json"];
     }

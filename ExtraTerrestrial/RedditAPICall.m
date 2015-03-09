@@ -10,7 +10,15 @@
 
 @implementation RedditAPICall
 
-//  Perform an API Call
+/**
+ *  Performs an API/Call with the given URL and returns an NSDIctionary containing the data.
+ *  This method is used for most of the API Calls of the app.
+ *
+ *  @param url The URL of the API route
+ *
+ *  @return NSDictionary containing the raw data
+ *
+ */
 -(NSDictionary *) dictionaryWithDataForURL:(NSURL *) url {
     
     NSDictionary *requestReturns = [[NSDictionary alloc] init];
@@ -42,7 +50,15 @@
 
 
 
-//  Perform an API Call
+/**
+ *  Performs an API/Call with the given URL and returns an NSArray containing the data.
+ *  This mehtod is mostly used by singlePost calls, which return an Array on the first level.
+ *
+ *  @param url The URL of the API route
+ *
+ *  @return NSArray containing the raw data
+ *
+ */
 -(NSArray *) arrayWithDataForURL:(NSURL *) url {
     
     NSArray *requestReturns = [[NSArray alloc] init];

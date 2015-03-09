@@ -26,6 +26,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // If view is not set from segue it's the first startup of the app
     if(!self.setFromSegue) {
         self.subredditURL = [NSURL URLWithString:@"http://reddit.com/.json"];
         self.subredditTitle = @"front";
@@ -35,6 +36,7 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0; // random number
     
+    // Data
     self.apiCall = [[SubredditDataModel alloc] initWithURL:self.subredditURL];
     NSArray *keys = [[NSArray alloc] initWithObjects:@"title", @"subreddit", @"score", @"num_comments", @"thumbnail", @"domain", @"permalink", @"is_self", @"selftext", @"author", @"url", @"created_utc", nil];
     tableContents = [self.apiCall contentOfChildrenForKeys:keys];
@@ -42,15 +44,6 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     self.navigationItem.title = self.subredditTitle;
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     
-    // Initialize table data
-    
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,12 +53,18 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 
 #pragma mark - Table view data source
 
+
+/*
+ *  Subreddit tables do always just have one section.
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    // Subreddit views always have just one section.
     return 1;
 }
 
+/*
+ *  Number of rows equals the number of items to bes displayed.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [tableContents count];
@@ -111,8 +110,14 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 }
 
 
-/*
- *  Configures a self.subreddit cell. Sets the title, the subreddit and the domain.
+/**
+ *  Configures a selfPost cell without a thumbnail.
+ *
+ *  @param cell         The cell to be configured.
+ *  @param indexPath    The indexPath of the given cell.
+ *
+ *  @return A configured cell of the type SubredditTableViewCell.
+ *
  */
 - (void)configureSelfPostCell:(SubredditTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
@@ -122,8 +127,14 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 }
 
 
-/*
- *  Sets up a link-post cell with a given thumbnail.
+/**
+ *  Configures a linkPost cell with a thumbnail provided by the API.
+ *
+ *  @param cell         The cell to be configured.
+ *  @param indexPath    The indexPath of the given cell.
+ *
+ *  @return A configured cell of the type SubredditTableViewImageCell.
+ *
  */
 - (void)configureLinkPostCellWithThumbnail:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
@@ -134,8 +145,14 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 }
 
 
-/*
- *  Sets up a link-post cell with the default thumbnail.
+/**
+ *  Configures a linkPost cell with the default thumbnail thumbnail.
+ *
+ *  @param cell         The cell to be configured.
+ *  @param indexPath    The indexPath of the given cell.
+ *
+ *  @return A configured cell of the type SubredditTableViewImageCell.
+ *
  */
 - (void)configureLinkPostCellWithPlaceholder:(SubredditTableViewImageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.titleLabel.text = [[tableContents objectAtIndex:indexPath.row] valueForKey:@"title"];
@@ -149,8 +166,13 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 
 #pragma mark - Helper methods
 
-/*
+/**
  *  Checks if the post at the given index does contain a thumbnail.
+ *
+ *  @param indexOfPost The index of the post to be checked.
+ *
+ *  @return YES if the thumbnail-key is set, NO otherwise.
+ *
  */
 -(BOOL) hasImageAtIndexPath: (NSUInteger) indexOfPost {
     if ([[tableContents objectAtIndex:indexOfPost] objectForKey:@"thumbnail"]) {
@@ -161,8 +183,12 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
 }
 
 
-/*
+/**
  *  Checks if the post at the given index of the posts array is a self.subreddit post.
+ *
+ *  @param indexOfPost  Index of the post to be checked
+ *
+ *  @return             YES if post is s selfPost, NO otherwise.
  */
 -(BOOL) isSelfPost: (NSUInteger) indexOfPost  {
     return [[[tableContents objectAtIndex:indexOfPost] objectForKey:@"is_self"] boolValue];
@@ -212,16 +238,11 @@ static NSString * const kLinkPostTableIdentifier = @"linkPostTableViewCell";
     
     NSIndexPath *currentPath = [self.tableView indexPathForSelectedRow];
     
-    // TODO: use new dictionary?
     if([[segue identifier]isEqualToString:@"showSelfPostDetail"]) {
-        //NSLog(@"Segue recognized");
         SelfPostTableViewController *postDetailViewController = [segue destinationViewController];
         postDetailViewController.postData = [tableContents objectAtIndex:currentPath.row];
-//        NSString *postURLString = [[tableContents objectAtIndex:currentPath.row] objectForKey:@"permalink"];
-//        postDetailViewController.postURLString = postURLString;
+
         
-        //TODO: Use isSelf to check which view should be loaded
-//        postDetailViewController.isSelf = [[[tableContents objectAtIndex:currentPath.row] objectForKey:@"is_self"] boolValue];
     } else if ([[segue identifier] isEqualToString:@"showLinkPostDetail"]) {
         LinkPostViewController *linkPostDetailVC = [segue destinationViewController];
         linkPostDetailVC.contentURL = [[tableContents objectAtIndex:currentPath.row] valueForKey:@"url"];
